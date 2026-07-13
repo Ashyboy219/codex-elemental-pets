@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Frostbyte and Bolt: Elemental Pets for Codex"
+message: "If you use or remix these pets, please credit this repository."
+type: software
+authors:
+  - name: Ashyboy219
+repository-code: "https://github.com/Ashyboy219/codex-elemental-pets"
+url: "https://ashyboy219.github.io/codex-elemental-pets/"
+license: MIT
+version: 1.0.0
+date-released: 2026-07-13

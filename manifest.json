@@ -1,0 +1,19 @@
+{
+  "name": "Frostbyte and Bolt",
+  "version": "1.0.0",
+  "description": "Two unofficial, fully animated elemental pets for Codex.",
+  "repository": "https://github.com/Ashyboy219/codex-elemental-pets",
+  "homepage": "https://ashyboy219.github.io/codex-elemental-pets/",
+  "pets": [
+    {
+      "id": "frostbyte",
+      "path": "pets/frostbyte",
+      "spriteVersionNumber": 2
+    },
+    {
+      "id": "bolt",
+      "path": "pets/bolt",
+      "spriteVersionNumber": 2
+    }
+  ]
+}

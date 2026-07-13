@@ -1,0 +1,19 @@
+1
+00:00:00,000 --> 00:00:02,700
+Meet Frostbyte and Bolt—two new elemental Codex companions.
+
+2
+00:00:02,700 --> 00:00:05,700
+Frostbyte brings cool-headed focus.
+
+3
+00:00:05,700 --> 00:00:08,700
+Bolt brings brave, high-voltage momentum.
+
+4
+00:00:08,700 --> 00:00:12,000
+Each has 11 animation rows and 16 look directions.
+
+5
+00:00:12,000 --> 00:00:15,000
+Open-source and ready to hatch.
