@@ -13,7 +13,7 @@
   ·
   <a href="https://github.com/Ashyboy219/codex-elemental-pets/releases/latest/download/codex-elemental-pets-drag-and-drop.zip"><strong>Get the pet pack</strong></a>
   ·
-  <a href="ULTRA_EVOLUTION_PROPOSAL.md"><strong>Read the Ultra proposal</strong></a>
+  <a href="ULTRA_EVOLUTION_PROPOSAL.md"><strong>Read the Ultra evolved-forms proposal</strong></a>
 </p>
 
 ## Meet the pets
@@ -58,9 +58,9 @@ cd codex-elemental-pets
 
 If a newly copied pet is not visible, use **Refresh** in Pets before restarting Codex.
 
-## Ultra evolution concept
+## Ultra evolved-forms concept
 
-The showcase includes Normal and Ultra visual studies for both pets. Ultra is an upstream concept, not current runtime behavior: Codex custom pets do not receive reasoning-effort events and currently load one atlas per pet. The [v3 manifest and event proposal](ULTRA_EVOLUTION_PROPOSAL.md) describes a backwards-compatible path for alternate forms, reduced-motion transitions, and bounded ambient playback.
+The showcase includes Normal and Ultra visual studies for both pets. The proposed Ultra form is a static evolved design shown through an immediate, non-animated swap—there is no transformation sequence or ambient effect. Ultra is an upstream concept, not current runtime behavior: Codex custom pets do not receive reasoning-effort events and currently load one atlas per pet. The [v3 manifest and event proposal](ULTRA_EVOLUTION_PROPOSAL.md) describes a backwards-compatible path for selecting alternate forms.
 
 ## Why these are more than character stickers
 
@@ -75,8 +75,8 @@ Each pet includes:
 
 ## Media kit
 
-- [Evolution concept vertical video — Reels, TikTok, and Shorts](media/evolution-showcase-vertical-1080x1920.mp4)
-- [Evolution concept landscape video — X, LinkedIn, and YouTube](media/evolution-showcase-landscape-1920x1080.mp4)
+- [Ultra evolved-form concept video — Reels, TikTok, and Shorts](media/evolution-showcase-vertical-1080x1920.mp4)
+- [Ultra evolved-form concept video — X, LinkedIn, and YouTube](media/evolution-showcase-landscape-1920x1080.mp4)
 - [Vertical video — Reels, TikTok, Shorts, and mobile feeds](media/showcase-vertical-1080x1920.mp4)
 - [Landscape video — X, LinkedIn, YouTube, and presentations](media/showcase-landscape-1920x1080.mp4)
 - [Square launch image](media/poster-square-1080x1080.png)
@@ -88,7 +88,7 @@ Each pet includes:
 
 The pets were designed and produced through Codex using grounded image generation plus deterministic atlas assembly and validation. The social media was rendered from the final approved spritesheets; it does not redraw or replace the pet artwork.
 
-Rebuild the installable-pet media and the Ultra evolution concept cut with the bundled workspace Python runtime and FFmpeg:
+Rebuild the installable-pet media and the Ultra evolved-form concept cut with the bundled workspace Python runtime and FFmpeg:
 
 ```bash
 python3 scripts/build_media.py

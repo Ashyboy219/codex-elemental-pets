@@ -2,7 +2,7 @@
 
 ## Recommended launch order
 
-1. Publish the landscape evolution MP4 natively on X and LinkedIn; use the vertical evolution MP4 for Reels, TikTok, and YouTube Shorts.
+1. Publish the landscape showcase MP4 natively on X and LinkedIn; use the vertical showcase MP4 for Reels, TikTok, and YouTube Shorts.
 2. Put the GitHub link in the post text or first comment, not only inside the video.
 3. Tag `@OpenAIDevs` on X and share the same project in the OpenAI Developer Forum.
 4. Submit the prepared project details to the official OpenAI Developer Showcase.
@@ -14,7 +14,7 @@
 
 Meet Frostbyte and Bolt, two complete animated pets for Codex. Each carries its personality through 11 rows, 73 frames, and 16 look directions.
 
-See them move, try the Ultra form study, and install them:
+See them move, compare the static Ultra evolved-form study, and install them:
 https://ashyboy219.github.io/codex-elemental-pets/
 
 @OpenAIDevs #Codex
@@ -31,7 +31,7 @@ Attach: `media/frostbyte-directions.png` and `media/bolt-directions.png`
 
 ## X — Ultra concept reply
 
-The site also previews Normal → Ultra evolution art for both pets.
+The site also previews static Normal and Ultra evolved-form art for both pets—an immediate visual swap with no transformation or ambient effect.
 
 Honest caveat: it is a concept, not a live reasoning-mode reaction. Codex custom pets currently receive no reasoning-effort hook and load one atlas each. I included a backwards-compatible v3 proposal:
 https://github.com/Ashyboy219/codex-elemental-pets/blob/main/ULTRA_EVOLUTION_PROPOSAL.md
@@ -46,7 +46,7 @@ Frostbyte is calm, balanced, and crystalline. Bolt is asymmetric, restless, and 
 
 Each pet has 11 animation rows, 73 populated frames, 16 look directions, transparent v2 atlas packaging, deterministic validation, and independent visual QA.
 
-The poster-first site now includes the official Codex desktop install path, one-click install links, and interactive Normal/Ultra form studies:
+The poster-first site now includes the official Codex desktop install path, one-click install links, and static Normal/Ultra evolved-form studies:
 https://ashyboy219.github.io/codex-elemental-pets/
 
 The Ultra forms are clearly labeled as an upstream concept. Current custom pets do not receive reasoning-effort events, so they cannot react to Ultra automatically today. The repository includes a backwards-compatible proposal for that future behavior:
@@ -64,7 +64,7 @@ Attach: `media/evolution-showcase-landscape-1920x1080.mp4`
 
 Two complete elemental pets for Codex, each with 11 animation rows, 73 frames, and 16 look directions.
 
-Watch, switch between Normal and the proposed Ultra art, then install from the showcase:
+Watch the normal pets work, compare them with the proposed static Ultra evolved-form art, then install from the showcase:
 ashyboy219.github.io/codex-elemental-pets/
 
 Ultra is a visual concept, not a current reasoning-mode reaction.
@@ -90,13 +90,13 @@ The public project includes the official Settings-based install path, one-click 
 
 https://ashyboy219.github.io/codex-elemental-pets/
 
-The site also previews Ultra evolution art. This is intentionally labeled as a concept because current Codex custom pets receive no reasoning-effort hook. A proposed backwards-compatible manifest and event shape is included in the repository.
+The site also previews static Ultra evolved-form art through an immediate, non-animated swap. This is intentionally labeled as a concept because current Codex custom pets receive no reasoning-effort hook. A proposed backwards-compatible manifest and event shape is included in the repository.
 
 I’d love feedback on the personalities, motion language, and what element should come next.
 
 ## Posting checklist
 
-- Upload the evolution MP4 directly; do not post only a YouTube or GitHub link.
+- Upload the showcase MP4 directly; do not post only a YouTube or GitHub link.
 - Use the square poster as the thumbnail where the platform supports one.
 - Keep the first sentence visible before “see more.”
 - Add alt text: “Frostbyte, a calm cyan crystal pet, and Bolt, an energetic yellow lightning pet, animate through Codex-style poses on a dark split-element background.”

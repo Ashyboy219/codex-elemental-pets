@@ -1,10 +1,10 @@
 {
   "name": "Frostbyte and Bolt",
-  "version": "1.1.0",
-  "description": "Two unofficial, fully animated elemental pets for Codex, plus an upstream Ultra evolution concept.",
+  "version": "1.1.1",
+  "description": "Two unofficial, fully animated elemental pets for Codex, plus an upstream static Ultra evolved-forms concept.",
   "repository": "https://github.com/Ashyboy219/codex-elemental-pets",
   "homepage": "https://ashyboy219.github.io/codex-elemental-pets/",
-  "ultraEvolutionProposal": "ULTRA_EVOLUTION_PROPOSAL.md",
+  "ultraEvolvedFormsProposal": "ULTRA_EVOLUTION_PROPOSAL.md",
   "pets": [
     {
       "id": "frostbyte",
