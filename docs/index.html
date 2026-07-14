@@ -3,99 +3,205 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Frostbyte × Bolt — Elemental Pets for Codex</title>
-  <meta name="description" content="Two unofficial, fully animated elemental pets for Codex: Frostbyte and Bolt.">
-  <meta property="og:title" content="Frostbyte × Bolt — Elemental Pets for Codex">
-  <meta property="og:description" content="11 animation rows. 73 frames. 16 look directions. Two unmistakable personalities.">
+  <title>Frostbyte × Bolt | Elemental Pets for Codex</title>
+  <meta name="description" content="A poster-first showcase of two complete v2 Codex pets, their work animations, and an honest Ultra evolution concept.">
+  <meta property="og:title" content="Frostbyte × Bolt | Elemental Pets for Codex">
+  <meta property="og:description" content="Two complete elemental pets, meaningful work animations, and an honest Ultra evolution concept.">
   <meta property="og:image" content="https://ashyboy219.github.io/codex-elemental-pets/assets/poster-landscape-1200x675.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ashyboy219.github.io/codex-elemental-pets/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="ambient ambient-ice"></div>
-  <div class="ambient ambient-bolt"></div>
-  <header class="nav">
-    <a class="brand" href="#top">FROSTBYTE <span>×</span> BOLT</a>
-    <div class="nav-links">
-      <a href="#pets">The pets</a>
-      <a href="#quality">Quality</a>
-      <a class="button button-small" href="https://github.com/Ashyboy219/codex-elemental-pets">GitHub ↗</a>
-    </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Frostbyte and Bolt, back to top">FROSTBYTE <span>×</span> BOLT</a>
+    <nav aria-label="Primary navigation">
+      <a href="#install">Install</a>
+      <a href="#evolution">Ultra concept</a>
+      <a href="https://github.com/Ashyboy219/codex-elemental-pets">GitHub ↗</a>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="eyebrow">UNOFFICIAL COMMUNITY PETS · V2</div>
-      <h1>Two new elements.<br><span>Two real personalities.</span></h1>
-      <p class="lede">Frostbyte stays cool under pressure. Bolt lives for the brave first pass. Both are fully animated, validated, and ready for Codex.</p>
-      <div class="actions">
-        <a class="button" href="https://github.com/Ashyboy219/codex-elemental-pets/releases/latest">Get the pet pack</a>
-        <a class="text-link" href="https://github.com/Ashyboy219/codex-elemental-pets#install">Install from source →</a>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <picture class="hero-media">
+        <source media="(max-aspect-ratio: 4 / 3)" srcset="assets/poster-vertical-1080x1920.png">
+        <img class="hero-poster" src="assets/poster-landscape-1200x675.png" alt="Frostbyte, a calm cyan crystal pet, beside Bolt, an energetic yellow lightning pet">
+      </picture>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-panel">
+        <h1 id="hero-title">Two complete v2 pets for Codex desktop.</h1>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#install">Install a pet</a>
+          <a class="button button-quiet" href="#evolution">Try the Ultra concept</a>
+        </div>
       </div>
-      <div class="video-shell">
-        <video autoplay muted loop playsinline poster="assets/poster-landscape-1200x675.png">
+      <a class="scroll-cue" href="#install" aria-label="Continue to installation">Scroll to install <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section class="install section" id="install" aria-labelledby="install-title">
+      <div class="section-heading install-heading">
+        <p class="kicker">Official desktop path</p>
+        <h2 id="install-title">Install through Codex.</h2>
+        <p>Open the pets folder from Settings so Codex chooses the right location for your machine. <a href="https://developers.openai.com/codex/pets">Read the official Pets docs ↗</a></p>
+      </div>
+
+      <div class="install-grid">
+        <div class="install-steps">
+          <ol>
+            <li><span>1</span><p>Download the <a href="https://github.com/Ashyboy219/codex-elemental-pets/releases/latest/download/codex-elemental-pets-drag-and-drop.zip">drag-and-drop pet pack</a>.</p></li>
+            <li><span>2</span><p>In Codex, open <strong>Settings → Pets → Custom pets → Open folder</strong>.</p></li>
+            <li><span>3</span><p>Copy the <code>frostbyte</code> and/or <code>bolt</code> folder from the pack into that folder.</p></li>
+            <li><span>4</span><p>Return to Pets, choose <strong>Refresh</strong>, then select your new companion.</p></li>
+          </ol>
+
+          <div class="desktop-links" aria-labelledby="desktop-link-title">
+            <h2 id="desktop-link-title">Or install in one click</h2>
+            <p>These links open the current Codex desktop pet installer and use the hosted v2 spritesheets.</p>
+            <div class="button-row">
+              <a class="button pet-install frost-install" href="codex://pets/install?name=Frostbyte&amp;description=A%20cool-headed%20crystal%20companion%20for%20precise%2C%20patient%20work.&amp;imageUrl=https%3A%2F%2Fashyboy219.github.io%2Fcodex-elemental-pets%2Fpets%2Ffrostbyte%2Fspritesheet.webp&amp;spriteVersionNumber=2">Install Frostbyte</a>
+              <a class="button pet-install bolt-install" href="codex://pets/install?name=Bolt&amp;description=A%20bright%2C%20restless%20spark%20for%20rapid%20experiments%20and%20brave%20first%20passes.&amp;imageUrl=https%3A%2F%2Fashyboy219.github.io%2Fcodex-elemental-pets%2Fpets%2Fbolt%2Fspritesheet.webp&amp;spriteVersionNumber=2">Install Bolt</a>
+            </div>
+          </div>
+        </div>
+
+        <figure class="settings-visual">
+          <div class="settings-frame">
+            <div class="settings-shell" role="img" aria-label="Custom pets settings row showing the generic local path and an Open folder control">
+              <div class="settings-copy">
+                <strong>Custom pets</strong>
+                <code>~/.codex/pets</code>
+              </div>
+              <span class="open-folder">Open folder <span aria-hidden="true">↗</span></span>
+            </div>
+          </div>
+          <figcaption>A privacy-safe recreation of the Custom pets row. Codex opens the correct local directory for your machine.</figcaption>
+        </figure>
+      </div>
+
+      <details class="script-install">
+        <summary>Prefer the optional command-line installer?</summary>
+        <div class="script-columns">
+          <div>
+            <h2>macOS or Linux</h2>
+            <pre><code>git clone https://github.com/Ashyboy219/codex-elemental-pets.git
+cd codex-elemental-pets
+./install.sh</code></pre>
+          </div>
+          <div>
+            <h2>Windows PowerShell</h2>
+            <pre><code>git clone https://github.com/Ashyboy219/codex-elemental-pets.git
+cd codex-elemental-pets
+./install.ps1</code></pre>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="evolution" id="evolution" aria-labelledby="evolution-title">
+      <div class="section evolution-intro">
+        <div class="section-heading">
+          <h2 id="evolution-title">Normal meets Ultra.</h2>
+        </div>
+        <p class="concept-note"><strong>Upstream concept:</strong> current Codex custom pets receive no reasoning-effort hook, so Ultra cannot activate automatically today. These controls preview a proposed evolution behavior.</p>
+      </div>
+
+      <div class="evolution-grid section">
+        <article class="evolution-card frost-card" data-evolution-card data-form="normal">
+          <div class="card-copy">
+            <p class="element-label">Ice · Frostbyte</p>
+            <h3>Stillness gathers force.</h3>
+            <p>Normal Frostbyte keeps a measured rhythm. Ultra pulls a rotating snowflake ring inward until it lands as a compact snowball beat.</p>
+          </div>
+
+          <div class="evolution-stage" data-pet="frostbyte">
+            <img class="pet-form normal-form animated-normal" src="assets/frostbyte-waving.gif" alt="Frostbyte waving in Normal form">
+            <span class="pet-form normal-form normal-still frost-still" role="img" aria-label="Frostbyte resting in Normal form" aria-hidden="true"></span>
+            <img class="pet-form ultra-form" src="assets/frostbyte-ultra.png" alt="Frostbyte in the proposed Ultra ice form" aria-hidden="true">
+            <div class="frost-ambient" aria-hidden="true">
+              <span class="frost-ring">
+                <i style="--i:0">❄</i><i style="--i:1">❄</i><i style="--i:2">❄</i><i style="--i:3">❄</i>
+                <i style="--i:4">❄</i><i style="--i:5">❄</i><i style="--i:6">❄</i><i style="--i:7">❄</i>
+              </span>
+              <span class="snowball"></span>
+            </div>
+          </div>
+
+          <div class="showcase-controls">
+            <div class="form-toggle" role="group" aria-label="Frostbyte form">
+              <button type="button" data-form-button="normal" aria-pressed="true">Normal</button>
+              <button type="button" data-form-button="ultra" aria-pressed="false">Ultra</button>
+            </div>
+            <button class="ambient-toggle" type="button" aria-pressed="false">Play ambient</button>
+          </div>
+          <p class="ambient-note">Ambient motion stops automatically after 11 seconds.</p>
+          <p class="sr-only" aria-live="polite" data-status>Frostbyte is in Normal form.</p>
+        </article>
+
+        <article class="evolution-card bolt-card" data-evolution-card data-form="normal">
+          <div class="card-copy">
+            <p class="element-label">Lightning · Bolt</p>
+            <h3>Momentum breaks the frame.</h3>
+            <p>Normal Bolt is already impatient. Ultra vanishes at speed, hits a full-frame flash, then snaps back into the same grounded silhouette.</p>
+          </div>
+
+          <div class="evolution-stage" data-pet="bolt">
+            <img class="pet-form normal-form animated-normal" src="assets/bolt-waving.gif" alt="Bolt waving in Normal form">
+            <span class="pet-form normal-form normal-still bolt-still" role="img" aria-label="Bolt resting in Normal form" aria-hidden="true"></span>
+            <img class="pet-form ultra-form" src="assets/bolt-ultra.png" alt="Bolt in the proposed Ultra lightning form" aria-hidden="true">
+            <div class="bolt-ambient" aria-hidden="true">
+              <span class="bolt-trail"></span>
+              <span class="bolt-flash"></span>
+            </div>
+          </div>
+
+          <div class="showcase-controls">
+            <div class="form-toggle" role="group" aria-label="Bolt form">
+              <button type="button" data-form-button="normal" aria-pressed="true">Normal</button>
+              <button type="button" data-form-button="ultra" aria-pressed="false">Ultra</button>
+            </div>
+            <button class="ambient-toggle" type="button" aria-pressed="false">Play ambient</button>
+          </div>
+          <p class="ambient-note">Ambient motion stops automatically after 11 seconds.</p>
+          <p class="sr-only" aria-live="polite" data-status>Bolt is in Normal form.</p>
+        </article>
+      </div>
+
+      <div class="proposal-link section">
+        <div>
+          <h3>A small path to real evolution events.</h3>
+          <p>The proposal keeps existing v2 pets working, adds optional local variants, and bounds ambient motion to one short opening beat.</p>
+        </div>
+        <a class="button button-primary" href="https://github.com/Ashyboy219/codex-elemental-pets/blob/main/ULTRA_EVOLUTION_PROPOSAL.md">Read the v3 proposal</a>
+      </div>
+    </section>
+
+    <section class="quality section" id="quality" aria-labelledby="quality-title">
+      <div class="quality-copy">
+        <h2 id="quality-title">Personality survives every state.</h2>
+        <p>Each installable pet has a validated 1536 × 2288 transparent atlas, nine semantic animation states, and 16 clockwise look directions.</p>
+        <ul class="quality-facts" aria-label="Pet production facts">
+          <li><strong>11</strong><span>animation rows</span></li>
+          <li><strong>73</strong><span>populated frames</span></li>
+          <li><strong>16</strong><span>look directions</span></li>
+        </ul>
+      </div>
+      <div class="motion-frame">
+        <video controls muted loop playsinline poster="assets/poster-landscape-1200x675.png">
+          <source src="assets/evolution-showcase-landscape-1920x1080.mp4" type="video/mp4">
           <source src="assets/showcase-landscape-1920x1080.mp4" type="video/mp4">
         </video>
-      </div>
-    </section>
-
-    <section class="proof" aria-label="Project statistics">
-      <div><strong>11</strong><span>animation rows</span></div>
-      <div><strong>73</strong><span>populated frames each</span></div>
-      <div><strong>16</strong><span>look directions</span></div>
-      <div><strong>2</strong><span>distinct personalities</span></div>
-    </section>
-
-    <section class="pets" id="pets">
-      <article class="pet-card pet-ice">
-        <div class="pet-copy">
-          <div class="eyebrow">ICE / PRECISION</div>
-          <h2>Frostbyte</h2>
-          <p>A cool-headed crystal companion for precise, patient work. Symmetry, pale cyan facets, and a composed stance make calm focus visible.</p>
-          <div class="traits"><span>Patient</span><span>Exact</span><span>Balanced</span></div>
-        </div>
-        <img src="assets/frostbyte-waving.gif" alt="Frostbyte waving">
-      </article>
-
-      <article class="pet-card pet-bolt">
-        <div class="pet-copy">
-          <div class="eyebrow">LIGHTNING / MOMENTUM</div>
-          <h2>Bolt</h2>
-          <p>A bright, restless spark for rapid experiments and brave first passes. The swept crest and asymmetric stance are always ready to move.</p>
-          <div class="traits"><span>Brave</span><span>Fast</span><span>Restless</span></div>
-        </div>
-        <img src="assets/bolt-waving.gif" alt="Bolt waving">
-      </article>
-    </section>
-
-    <section class="quality" id="quality">
-      <div>
-        <div class="eyebrow">BUILT PAST THE FIRST IMPRESSION</div>
-        <h2>Not stickers.<br>Complete animation systems.</h2>
-      </div>
-      <div class="quality-list">
-        <p><strong>Semantic states.</strong> Idle, movement, wave, jump, failure, waiting, active work, and review all communicate different app moments.</p>
-        <p><strong>Direction discipline.</strong> Four hard cardinals, 12 intermediates, blind classification, and continuous clockwise motion.</p>
-        <p><strong>Production packaging.</strong> Transparent WebP atlases, chroma cleanup, deterministic validation, installers, and v2 manifests.</p>
-      </div>
-    </section>
-
-    <section class="cta">
-      <img src="assets/showcase-loop.gif" alt="Frostbyte and Bolt animated loop">
-      <div>
-        <div class="eyebrow">OPEN SOURCE · READY TO HATCH</div>
-        <h2>Bring both elements into Codex.</h2>
-        <p>Install them, remix them with attribution, or use the repository as a reference for your own personality-led pet.</p>
-        <a class="button" href="https://github.com/Ashyboy219/codex-elemental-pets">Explore the repository</a>
       </div>
     </section>
   </main>
 
   <footer>
     <span>Created by Ashyboy219 with Codex.</span>
-    <span>Unofficial community project. Not affiliated with OpenAI.</span>
+    <span>Unofficial community project, not affiliated with OpenAI.</span>
   </footer>
 </body>
 </html>

@@ -8,7 +8,7 @@ Fill in your personal name and email, then use the prepared project answers belo
 
 **Project type**
 
-Open-source creative tooling and animated mascot pack.
+Open-source creative tooling, animated mascot pack, and product concept.
 
 **Did you use Codex to build this?**
 
@@ -24,15 +24,15 @@ Codex desktop, Python, Pillow, FFmpeg, WebP sprite atlases, shell installers, Gi
 
 **Use cases showcased**
 
-Creative tooling, developer experience, animated mascots, image-production automation, visual QA, and open-source community customization.
+Creative tooling, developer experience, animated mascots, image-production automation, visual QA, open-source customization, and product prototyping.
 
 **Capability showcased**
 
-Grounded image generation, coding-agent orchestration, deterministic image processing, transparent sprite-atlas assembly, animation QA, and multi-format media generation.
+Image generation, coding-agent orchestration, deterministic image processing, transparent sprite-atlas assembly, animation QA, and multi-format launch media.
 
 **OpenAI models and APIs used**
 
-OpenAI Codex and Codex’s built-in image-generation capability. The shared project does not require API keys or make paid API calls.
+OpenAI Codex and Codex’s built-in image-generation capability. The public project does not require an API key or make paid API calls.
 
 **Other models or APIs**
 
@@ -40,7 +40,7 @@ No.
 
 **Building process**
 
-Codex inspected the existing elemental pet family, developed two personality-led visual directions, generated each animation row from a canonical identity, assembled validated v2 atlases, repaired direction-loop continuity issues, ran deterministic and independent visual QA, packaged installers, and produced the launch site and social media.
+Codex inspected the existing pet language, developed two personality-led elemental directions, generated and repaired semantic animation rows from canonical identities, assembled validated v2 atlases, ran deterministic and independent visual QA, implemented the official local install flow, and produced an interactive Ultra-evolution product concept plus social media.
 
 ## Project details
 
@@ -54,7 +54,7 @@ https://ashyboy219.github.io/codex-elemental-pets/
 
 **Setup steps**
 
-Clone the public repository and run `./install.sh` on macOS/Linux or `./install.ps1` in PowerShell. The installer copies both validated v2 pet folders into the user’s Codex pets directory. Restart Codex if the pets do not appear immediately.
+Open Codex desktop and go to Settings > Pets > Custom pets > Open folder. Download the latest pet pack, copy the Frostbyte and Bolt folders into that directory, then return to Pets, select Refresh, and choose either pet. The project site also offers Codex desktop one-click install buttons.
 
 **Project title**
 
@@ -62,4 +62,18 @@ Frostbyte and Bolt: Elemental Companions for Codex
 
 **Tagline**
 
-Two personality-rich elemental pets, each carrying a coherent identity across 73 animation frames and 16 look directions.
+Two personality-rich elemental companions with complete animation systems—and a proposal for pets that evolve with Ultra mode.
+
+**Project description**
+
+Frostbyte and Bolt are two unofficial community pets built to feel native to Codex while expressing opposite personalities: calm crystalline precision and restless electric momentum. Each installable pet carries a coherent identity through the complete v2 animation contract, including active-work behavior, status reactions, and 16-direction look tracking.
+
+The project also explores a future-facing idea: when a task enters Ultra reasoning, its pet could visibly evolve into a more powerful elemental form, play one brief transformation, and settle into a subtle ambient loop that respects reduced-motion and user controls. The site demonstrates the interaction and the repository includes a backwards-compatible implementation proposal; current Codex does not yet expose reasoning effort to custom pets.
+
+**Author name**
+
+Ashyboy219
+
+**Public cover image**
+
+https://ashyboy219.github.io/codex-elemental-pets/assets/poster-landscape-1200x675.png
