@@ -105,9 +105,9 @@ cd codex-elemental-pets
     <section class="evolution" id="evolution" aria-labelledby="evolution-title">
       <div class="section evolution-intro">
         <div class="section-heading">
-          <h2 id="evolution-title">Normal meets Ultra.</h2>
+          <h2 id="evolution-title">Normal meets Evolved.</h2>
         </div>
-        <p class="concept-note"><strong>Upstream concept:</strong> current Codex custom pets receive no reasoning-effort hook, so Ultra cannot activate automatically today. These controls preview a proposed evolution behavior.</p>
+        <p class="concept-note"><strong>Upstream concept:</strong> current Codex custom pets receive no reasoning-effort hook, so Ultra cannot activate automatically today. These controls preview the proposed evolved forms.</p>
       </div>
 
       <div class="evolution-grid section">
@@ -115,30 +115,21 @@ cd codex-elemental-pets
           <div class="card-copy">
             <p class="element-label">Ice · Frostbyte</p>
             <h3>Stillness gathers force.</h3>
-            <p>Normal Frostbyte keeps a measured rhythm. Ultra pulls a rotating snowflake ring inward until it lands as a compact snowball beat.</p>
+            <p>Normal Frostbyte keeps a measured rhythm. Its evolved form carries that calm focus into a sharper, more powerful ice silhouette.</p>
           </div>
 
           <div class="evolution-stage" data-pet="frostbyte">
             <img class="pet-form normal-form animated-normal" src="assets/frostbyte-waving.gif" alt="Frostbyte waving in Normal form">
             <span class="pet-form normal-form normal-still frost-still" role="img" aria-label="Frostbyte resting in Normal form" aria-hidden="true"></span>
-            <img class="pet-form ultra-form" src="assets/frostbyte-ultra.png" alt="Frostbyte in the proposed Ultra ice form" aria-hidden="true">
-            <div class="frost-ambient" aria-hidden="true">
-              <span class="frost-ring">
-                <i style="--i:0">❄</i><i style="--i:1">❄</i><i style="--i:2">❄</i><i style="--i:3">❄</i>
-                <i style="--i:4">❄</i><i style="--i:5">❄</i><i style="--i:6">❄</i><i style="--i:7">❄</i>
-              </span>
-              <span class="snowball"></span>
-            </div>
+            <img class="pet-form evolved-form" src="assets/frostbyte-ultra.png" alt="Frostbyte in the proposed evolved ice form" aria-hidden="true">
           </div>
 
           <div class="showcase-controls">
             <div class="form-toggle" role="group" aria-label="Frostbyte form">
               <button type="button" data-form-button="normal" aria-pressed="true">Normal</button>
-              <button type="button" data-form-button="ultra" aria-pressed="false">Ultra</button>
+              <button type="button" data-form-button="evolved" aria-pressed="false">Evolved</button>
             </div>
-            <button class="ambient-toggle" type="button" aria-pressed="false">Play ambient</button>
           </div>
-          <p class="ambient-note">Ambient motion stops automatically after 11 seconds.</p>
           <p class="sr-only" aria-live="polite" data-status>Frostbyte is in Normal form.</p>
         </article>
 
@@ -146,35 +137,29 @@ cd codex-elemental-pets
           <div class="card-copy">
             <p class="element-label">Lightning · Bolt</p>
             <h3>Momentum breaks the frame.</h3>
-            <p>Normal Bolt is already impatient. Ultra vanishes at speed, hits a full-frame flash, then snaps back into the same grounded silhouette.</p>
+            <p>Normal Bolt is already impatient. Its evolved form turns that momentum into a fierce, high-voltage silhouette.</p>
           </div>
 
           <div class="evolution-stage" data-pet="bolt">
             <img class="pet-form normal-form animated-normal" src="assets/bolt-waving.gif" alt="Bolt waving in Normal form">
             <span class="pet-form normal-form normal-still bolt-still" role="img" aria-label="Bolt resting in Normal form" aria-hidden="true"></span>
-            <img class="pet-form ultra-form" src="assets/bolt-ultra.png" alt="Bolt in the proposed Ultra lightning form" aria-hidden="true">
-            <div class="bolt-ambient" aria-hidden="true">
-              <span class="bolt-trail"></span>
-              <span class="bolt-flash"></span>
-            </div>
+            <img class="pet-form evolved-form" src="assets/bolt-ultra.png" alt="Bolt in the proposed evolved lightning form" aria-hidden="true">
           </div>
 
           <div class="showcase-controls">
             <div class="form-toggle" role="group" aria-label="Bolt form">
               <button type="button" data-form-button="normal" aria-pressed="true">Normal</button>
-              <button type="button" data-form-button="ultra" aria-pressed="false">Ultra</button>
+              <button type="button" data-form-button="evolved" aria-pressed="false">Evolved</button>
             </div>
-            <button class="ambient-toggle" type="button" aria-pressed="false">Play ambient</button>
           </div>
-          <p class="ambient-note">Ambient motion stops automatically after 11 seconds.</p>
           <p class="sr-only" aria-live="polite" data-status>Bolt is in Normal form.</p>
         </article>
       </div>
 
       <div class="proposal-link section">
         <div>
-          <h3>A small path to real evolution events.</h3>
-          <p>The proposal keeps existing v2 pets working, adds optional local variants, and bounds ambient motion to one short opening beat.</p>
+          <h3>A small path to real evolved forms.</h3>
+          <p>The proposal keeps existing v2 pets working and adds optional local variants for evolved forms.</p>
         </div>
         <a class="button button-primary" href="https://github.com/Ashyboy219/codex-elemental-pets/blob/main/ULTRA_EVOLUTION_PROPOSAL.md">Read the v3 proposal</a>
       </div>

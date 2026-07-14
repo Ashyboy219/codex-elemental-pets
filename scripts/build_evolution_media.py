@@ -10,7 +10,7 @@ import wave
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw
 
 from build_media import (
     FONT_BOLD,
@@ -57,102 +57,18 @@ def contain(image: Image.Image, box: tuple[int, int]) -> Image.Image:
     return fitted
 
 
-def alpha_scaled(image: Image.Image, opacity: float) -> Image.Image:
-    result = image.copy()
-    result.putalpha(result.getchannel("A").point(lambda value: int(value * opacity)))
-    return result
-
-
 def draw_ultra(
     canvas: Image.Image,
     art: Image.Image,
     center_x: int,
     baseline_y: int,
     box: tuple[int, int],
-    opacity: float = 1.0,
-    scale: float = 1.0,
 ) -> tuple[int, int, int, int]:
-    target = contain(art, (max(1, int(box[0] * scale)), max(1, int(box[1] * scale))))
-    if opacity < 0.999:
-        target = alpha_scaled(target, opacity)
+    target = contain(art, box)
     x = int(center_x - target.width / 2)
     y = int(baseline_y - target.height)
     canvas.alpha_composite(target, (x, y))
     return x, y, target.width, target.height
-
-
-def draw_snow_ring(
-    canvas: Image.Image,
-    t: float,
-    center: tuple[float, float],
-    radius: float,
-    alpha: int,
-    count: int = 12,
-) -> None:
-    draw = ImageDraw.Draw(canvas, "RGBA")
-    cx, cy = center
-    contraction = smoothstep((t % 4.8 - 3.75) / 0.55)
-    local_radius = radius * (1.0 - contraction * 0.77)
-    spin = t * 0.72
-    for index in range(count):
-        angle = spin + index * math.tau / count
-        x = cx + math.cos(angle) * local_radius
-        y = cy + math.sin(angle) * local_radius * 0.68
-        size = max(2, int(radius * 0.035))
-        color = (174, 241, 255, int(alpha * (0.68 + 0.32 * math.sin(index + t * 2.0) ** 2)))
-        draw.line((x - size, y, x + size, y), fill=color, width=max(1, size // 2))
-        draw.line((x, y - size, x, y + size), fill=color, width=max(1, size // 2))
-        draw.line((x - size * 0.7, y - size * 0.7, x + size * 0.7, y + size * 0.7), fill=color, width=1)
-        draw.line((x - size * 0.7, y + size * 0.7, x + size * 0.7, y - size * 0.7), fill=color, width=1)
-    if contraction > 0.12:
-        ball_x = cx + radius * 0.52
-        ball_y = cy + radius * 0.10
-        ball = max(3, int(radius * 0.09 * contraction))
-        draw.ellipse(
-            (ball_x - ball, ball_y - ball, ball_x + ball, ball_y + ball),
-            fill=(225, 250, 255, int(alpha * contraction)),
-            outline=(115, 211, 248, int(alpha * contraction)),
-            width=max(1, ball // 4),
-        )
-
-
-def draw_lightning_dash(
-    canvas: Image.Image,
-    t: float,
-    center: tuple[float, float],
-    size: float,
-    alpha: int,
-) -> float:
-    phase = t % 4.0
-    vanish = smoothstep((phase - 2.35) / 0.12) * (1.0 - smoothstep((phase - 2.78) / 0.14))
-    draw = ImageDraw.Draw(canvas, "RGBA")
-    cx, cy = center
-    if vanish > 0.01:
-        flash_alpha = int(alpha * vanish)
-        for trail in range(5):
-            y = cy - size * 0.28 + trail * size * 0.13
-            start = cx - size * (0.82 - trail * 0.05)
-            end = cx + size * (0.65 + trail * 0.04)
-            draw.line((start, y, end, y), fill=(255, 223, 77, flash_alpha // (trail + 1)), width=max(2, int(size * 0.016)))
-        points = [
-            (cx - size * 0.05, cy - size * 0.52),
-            (cx + size * 0.15, cy - size * 0.08),
-            (cx - size * 0.02, cy - size * 0.08),
-            (cx + size * 0.11, cy + size * 0.48),
-        ]
-        draw.line(points, fill=(255, 245, 173, flash_alpha), width=max(3, int(size * 0.028)))
-    return 1.0 - vanish
-
-
-def evolution_flash(canvas: Image.Image, local: float, color: tuple[int, int, int]) -> float:
-    """Return Ultra reveal progress while drawing a compact transformation burst."""
-    progress = smoothstep((local - 0.82) / 0.72)
-    burst = 1.0 - min(1.0, abs(local - 1.15) / 0.38)
-    if burst > 0:
-        overlay = Image.new("RGBA", canvas.size, (*color, int(120 * burst)))
-        overlay = overlay.filter(ImageFilter.GaussianBlur(radius=max(2, canvas.width // 140)))
-        canvas.alpha_composite(overlay)
-    return progress
 
 
 def install_card(canvas: Image.Image, box: tuple[int, int, int, int]) -> None:
@@ -175,7 +91,9 @@ def install_card(canvas: Image.Image, box: tuple[int, int, int, int]) -> None:
 
 def render_frame(width: int, height: int, t: float, vertical: bool, frost_ultra: Image.Image, bolt_ultra: Image.Image) -> Image.Image:
     image = background(width, height)
-    add_particles(image, t)
+    # Keep the complete evolved-form scene still, including its atmosphere.
+    particle_time = 9.5 if 9.5 <= t < 13.2 else t
+    add_particles(image, particle_time)
     draw = ImageDraw.Draw(image, "RGBA")
     scale = width / (720 if vertical else 1280)
     safe = int(34 * scale)
@@ -234,46 +152,35 @@ def render_frame(width: int, height: int, t: float, vertical: bool, frost_ultra:
             title = font(FONT_BOLD, int(67 * scale))
             draw_centered(draw, top, "NOW IMAGINE ULTRA MODE", title, (245, 248, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(3, 6, 14, 210))
             draw_centered(draw, top + int(84 * scale), "UPSTREAM FEATURE CONCEPT", sub, (255, 219, 69, int(242 * alpha)), width)
-        reveal = evolution_flash(image, local, (189, 229, 255))
-        normal_alpha = alpha * (1.0 - reveal)
-        ultra_alpha = alpha * reveal
         baseline = int((1050 if vertical else 690) * scale)
         if vertical:
-            draw_sprite(image, "frostbyte", "idle", local, int(width * 0.28), baseline, 1.55 * scale * (1.0 + reveal * 0.15), normal_alpha)
-            draw_sprite(image, "bolt", "idle", local + 0.1, int(width * 0.72), baseline, 1.55 * scale * (1.0 + reveal * 0.15), normal_alpha)
-            draw_ultra(image, frost_ultra, int(width * 0.28), baseline, (int(250 * scale), int(600 * scale)), ultra_alpha, 0.92 + reveal * 0.08)
-            draw_ultra(image, bolt_ultra, int(width * 0.72), baseline, (int(250 * scale), int(600 * scale)), ultra_alpha, 0.92 + reveal * 0.08)
+            draw_sprite(image, "frostbyte", "idle", local, int(width * 0.28), baseline, 1.55 * scale, alpha)
+            draw_sprite(image, "bolt", "idle", local + 0.1, int(width * 0.72), baseline, 1.55 * scale, alpha)
         else:
-            draw_sprite(image, "frostbyte", "idle", local, int(width * 0.32), baseline, 2.0 * scale, normal_alpha)
-            draw_sprite(image, "bolt", "idle", local + 0.1, int(width * 0.68), baseline, 2.0 * scale, normal_alpha)
-            draw_ultra(image, frost_ultra, int(width * 0.32), baseline, (int(350 * scale), int(600 * scale)), ultra_alpha)
-            draw_ultra(image, bolt_ultra, int(width * 0.68), baseline, (int(350 * scale), int(600 * scale)), ultra_alpha)
+            draw_sprite(image, "frostbyte", "idle", local, int(width * 0.32), baseline, 2.0 * scale, alpha)
+            draw_sprite(image, "bolt", "idle", local + 0.1, int(width * 0.68), baseline, 2.0 * scale, alpha)
 
     elif t < 13.2:
-        local = t - 9.5
-        alpha = scene_fade(t, 9.5, 13.2)
+        # This is intentionally a hard cut to a fully static evolved-form card.
+        alpha = 1.0
         sub = font(FONT_MONO, int((18 if vertical else 20) * scale))
         top = int((138 if vertical else 58) * scale)
         if vertical:
             title = font(FONT_BOLD, int(62 * scale))
-            draw_centered(draw, top, "ELEMENTAL", title, (247, 249, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(3, 6, 14, 210))
-            draw_centered(draw, top + int(69 * scale), "GOD FORMS", title, (247, 249, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(3, 6, 14, 210))
+            draw_centered(draw, top, "EVOLVED", title, (247, 249, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(3, 6, 14, 210))
+            draw_centered(draw, top + int(69 * scale), "FORMS", title, (247, 249, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(3, 6, 14, 210))
             draw_centered(draw, top + int(149 * scale), "SAME FACE. VERY DIFFERENT EMOTION.", sub, (175, 213, 241, int(238 * alpha)), width)
         else:
             title = font(FONT_BOLD, int(66 * scale))
-            draw_centered(draw, top, "ELEMENTAL GOD FORMS", title, (247, 249, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(3, 6, 14, 210))
+            draw_centered(draw, top, "EVOLVED FORMS", title, (247, 249, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(3, 6, 14, 210))
             draw_centered(draw, top + int(82 * scale), "SAME FACE. VERY DIFFERENT EMOTION.", sub, (175, 213, 241, int(238 * alpha)), width)
         baseline = int((1050 if vertical else 700) * scale)
-        frost_center = (width * (0.29 if vertical else 0.32), baseline - int(270 * scale))
-        bolt_center = (width * (0.71 if vertical else 0.68), baseline - int(270 * scale))
-        draw_snow_ring(image, local, frost_center, int((175 if vertical else 215) * scale), int(220 * alpha))
-        bolt_opacity = draw_lightning_dash(image, local, bolt_center, int((310 if vertical else 380) * scale), int(235 * alpha))
         if vertical:
-            draw_ultra(image, frost_ultra, int(width * 0.29), baseline, (int(265 * scale), int(620 * scale)), alpha)
-            draw_ultra(image, bolt_ultra, int(width * 0.71), baseline, (int(265 * scale), int(620 * scale)), alpha * bolt_opacity)
+            draw_ultra(image, frost_ultra, int(width * 0.29), baseline, (int(265 * scale), int(620 * scale)))
+            draw_ultra(image, bolt_ultra, int(width * 0.71), baseline, (int(265 * scale), int(620 * scale)))
         else:
-            draw_ultra(image, frost_ultra, int(width * 0.32), baseline, (int(360 * scale), int(620 * scale)), alpha)
-            draw_ultra(image, bolt_ultra, int(width * 0.68), baseline, (int(360 * scale), int(620 * scale)), alpha * bolt_opacity)
+            draw_ultra(image, frost_ultra, int(width * 0.32), baseline, (int(360 * scale), int(620 * scale)))
+            draw_ultra(image, bolt_ultra, int(width * 0.68), baseline, (int(360 * scale), int(620 * scale)))
 
     elif t < 15.8:
         alpha = scene_fade(t, 13.2, 15.8)
@@ -327,13 +234,14 @@ def render_frame(width: int, height: int, t: float, vertical: bool, frost_ultra:
             link_y = int(670 * scale)
         draw_centered(draw, link_y, "github.com/Ashyboy219/codex-elemental-pets", mono, (255, 221, 74, int(250 * alpha)), width)
 
-    for cut in (2.6, 6.0, 9.5, 13.2, 15.8):
+    for cut in (2.6, 6.0, 15.8):
         distance = abs(t - cut)
         if distance < 0.10:
             draw.rectangle((0, 0, width, height), fill=(220, 241, 255, int((1.0 - distance / 0.10) * 42)))
     rail_height = max(4, int(8 * scale))
     draw.rectangle((0, height - rail_height, width, height), fill=(22, 29, 51, 225))
-    draw.rectangle((0, height - rail_height, int(width * min(1.0, t / DURATION)), height), fill=(255, 217, 63, 240))
+    rail_time = 9.5 if 9.5 <= t < 13.2 else t
+    draw.rectangle((0, height - rail_height, int(width * min(1.0, rail_time / DURATION)), height), fill=(255, 217, 63, 240))
     return image.convert("RGB")
 
 

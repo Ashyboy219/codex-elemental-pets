@@ -18,7 +18,7 @@ Elemental, kinetic, crafted. Frostbyte contributes calm precision; Bolt contribu
 
 ## Anti-references
 
-Avoid text-first SaaS landing pages, generic developer-tool dashboards, decorative glass-card grids, and claims that imply current Codex custom pets can react to Ultra reasoning mode. Do not let technical explanation compete with the pet artwork in the first viewport.
+Avoid text-first SaaS landing pages, generic developer-tool dashboards, decorative glass-card grids, and claims that imply current Codex custom pets can react to Ultra reasoning mode. Do not let technical explanation compete with the pet artwork in the first viewport. Do not animate the Ultra evolved forms or add transformation and ambient effects.
 
 ## Design Principles
 
@@ -26,6 +26,7 @@ Avoid text-first SaaS landing pages, generic developer-tool dashboards, decorati
 - Put the supported desktop install path before command-line alternatives.
 - Make personality visible in silhouette, animation, and interaction.
 - Separate what works today from clearly labeled upstream concepts.
+- Present each Ultra evolved form as a static image and use an immediate, non-animated state swap.
 - Keep every control understandable with a keyboard, without color, and with reduced motion enabled.
 
 ## Accessibility & Inclusion
