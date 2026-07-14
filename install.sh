@@ -14,4 +14,4 @@ for pet in frostbyte bolt; do
   echo "Installed $pet → $destination"
 done
 
-echo "Restart Codex if the new pets do not appear immediately."
+echo "Open Codex Settings → Pets and choose Refresh, then select your pet."

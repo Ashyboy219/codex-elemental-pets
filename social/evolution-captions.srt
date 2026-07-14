@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:02,600
+I hatched two new Codex elements: Frostbyte and Bolt.
+
+2
+00:00:02,600 --> 00:00:06,000
+They work while Codex works—snowcraft precision and charged-console speed.
+
+3
+00:00:06,000 --> 00:00:09,500
+Now imagine Ultra mode made your pet evolve.
+
+4
+00:00:09,500 --> 00:00:13,200
+Same face. Very different emotion. Elemental god forms.
+
+5
+00:00:13,200 --> 00:00:15,800
+The normal pets install through the official Settings, Pets, Open Folder flow.
+
+6
+00:00:15,800 --> 00:00:18,000
+The pets are open source. The Ultra behavior is an upstream feature proposal.

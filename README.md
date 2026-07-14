@@ -9,9 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="https://ashyboy219.github.io/codex-elemental-pets/"><strong>Watch the showcase</strong></a>
+  <a href="https://ashyboy219.github.io/codex-elemental-pets/"><strong>Open the interactive showcase</strong></a>
   ·
-  <a href="https://github.com/Ashyboy219/codex-elemental-pets/releases/latest"><strong>Get the pet pack</strong></a>
+  <a href="https://github.com/Ashyboy219/codex-elemental-pets/releases/latest/download/codex-elemental-pets-drag-and-drop.zip"><strong>Get the pet pack</strong></a>
+  ·
+  <a href="ULTRA_EVOLUTION_PROPOSAL.md"><strong>Read the Ultra proposal</strong></a>
 </p>
 
 ## Meet the pets
@@ -25,7 +27,20 @@ Their personalities are built into their silhouettes and motion. Frostbyte is ba
 
 ## Install
 
-Clone the repository and run the installer:
+The official desktop path is the recommended method:
+
+1. Download the [drag-and-drop pet pack](https://github.com/Ashyboy219/codex-elemental-pets/releases/latest/download/codex-elemental-pets-drag-and-drop.zip).
+2. In Codex, open **Settings → Pets → Custom pets → Open folder**.
+3. Copy the `frostbyte` and/or `bolt` folder from the downloaded pack into the folder Codex opened.
+4. Return to **Settings → Pets**, choose **Refresh**, then select your new companion.
+
+See OpenAI's [official Pets documentation](https://developers.openai.com/codex/pets) for the current desktop, web, and CLI behavior.
+
+The [interactive showcase](https://ashyboy219.github.io/codex-elemental-pets/#install) also provides one-click Codex desktop install links backed by the hosted v2 spritesheets.
+
+### Optional command-line installers
+
+On macOS or Linux:
 
 ```bash
 git clone https://github.com/Ashyboy219/codex-elemental-pets.git
@@ -41,7 +56,11 @@ cd codex-elemental-pets
 ./install.ps1
 ```
 
-Or copy each folder under `pets/` into `${CODEX_HOME:-$HOME/.codex}/pets/`, then restart Codex if needed.
+If a newly copied pet is not visible, use **Refresh** in Pets before restarting Codex.
+
+## Ultra evolution concept
+
+The showcase includes Normal and Ultra visual studies for both pets. Ultra is an upstream concept, not current runtime behavior: Codex custom pets do not receive reasoning-effort events and currently load one atlas per pet. The [v3 manifest and event proposal](ULTRA_EVOLUTION_PROPOSAL.md) describes a backwards-compatible path for alternate forms, reduced-motion transitions, and bounded ambient playback.
 
 ## Why these are more than character stickers
 
@@ -56,6 +75,8 @@ Each pet includes:
 
 ## Media kit
 
+- [Evolution concept vertical video — Reels, TikTok, and Shorts](media/evolution-showcase-vertical-1080x1920.mp4)
+- [Evolution concept landscape video — X, LinkedIn, and YouTube](media/evolution-showcase-landscape-1920x1080.mp4)
 - [Vertical video — Reels, TikTok, Shorts, and mobile feeds](media/showcase-vertical-1080x1920.mp4)
 - [Landscape video — X, LinkedIn, YouTube, and presentations](media/showcase-landscape-1920x1080.mp4)
 - [Square launch image](media/poster-square-1080x1080.png)
@@ -67,10 +88,11 @@ Each pet includes:
 
 The pets were designed and produced through Codex using grounded image generation plus deterministic atlas assembly and validation. The social media was rendered from the final approved spritesheets; it does not redraw or replace the pet artwork.
 
-Rebuild the media with the bundled workspace Python runtime and FFmpeg:
+Rebuild the installable-pet media and the Ultra evolution concept cut with the bundled workspace Python runtime and FFmpeg:
 
 ```bash
 python3 scripts/build_media.py
+python3 scripts/build_evolution_media.py
 ```
 
 ## License and status

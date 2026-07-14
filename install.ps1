@@ -13,4 +13,4 @@ foreach ($Pet in @("frostbyte", "bolt")) {
     Write-Host "Installed $Pet -> $Destination"
 }
 
-Write-Host "Restart Codex if the new pets do not appear immediately."
+Write-Host "Open Codex Settings > Pets and choose Refresh, then select your pet."
