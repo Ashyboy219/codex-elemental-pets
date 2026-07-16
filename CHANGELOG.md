@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 — 2026-07-14
+
+- Expanded the collection from two pets to four with Cinder, a smoke-and-ash familiar, and Mantra, an original tri-faced mind familiar representing Focus, Intuition, and Imagination.
+- Added complete v2 packaging for Cinder and Mantra: 11 rows, 73 populated frames, and 16 clockwise look directions per pet.
+- Added four-pet drag-and-drop and command-line installation coverage plus one-click Codex desktop install links.
+- Added an accessible four-pet website roster while keeping the static evolved-forms concept explicitly limited to Frostbyte and Bolt.
+- Updated project, licensing, showcase, citation, and social copy for the complete collection.
+
 ## 1.1.1 — 2026-07-13
 
 - Reframed the Ultra concept as evolved forms shown through an immediate, non-animated swap.

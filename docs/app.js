@@ -7,7 +7,7 @@ document.querySelectorAll("[data-evolution-card]").forEach((card) => {
   const normalStill = card.querySelector(".normal-still");
   const evolvedImage = card.querySelector(".evolved-form");
   const status = card.querySelector("[data-status]");
-  const petName = stage.dataset.pet === "frostbyte" ? "Frostbyte" : "Bolt";
+  const petName = stage.dataset.petName;
 
   function syncFormAccessibility() {
     const isEvolved = card.dataset.form === "evolved";

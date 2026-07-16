@@ -4,7 +4,7 @@ $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $CodexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }
 $PetsDirectory = Join-Path $CodexHome "pets"
 
-foreach ($Pet in @("frostbyte", "bolt")) {
+foreach ($Pet in @("frostbyte", "bolt", "cinder", "mantra")) {
     $Source = Join-Path $Root "pets/$Pet"
     $Destination = Join-Path $PetsDirectory $Pet
     New-Item -ItemType Directory -Path $Destination -Force | Out-Null
