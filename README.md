@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="media/showcase-loop.gif" alt="Frostbyte and Bolt animated showcase" width="720">
+  <img src="media/showcase-loop.gif" alt="The Codex Elemental Pets animated showcase" width="720">
 </p>
 
-<h1 align="center">Frostbyte × Bolt</h1>
+<h1 align="center">Codex Elemental Pets</h1>
 
 <p align="center">
-  Two high-quality elemental companions for Codex: one cool-headed, one high-voltage.
+  Four high-quality companions for Codex: ice, lightning, smoke and ash, and mind.
 </p>
 
 <p align="center">
@@ -23,7 +23,12 @@
 | ![Frostbyte waving](media/frostbyte-waving.gif) | ![Bolt waving](media/bolt-waving.gif) |
 | A cool-headed crystal companion for precise, patient work. | A bright, restless spark for rapid experiments and brave first passes. |
 
-Their personalities are built into their silhouettes and motion. Frostbyte is balanced, faceted, and composed. Bolt is asymmetric, forward-leaning, and visibly impatient to move.
+| Cinder | Mantra |
+| --- | --- |
+| ![Cinder waving](media/cinder-waving.gif) | ![Mantra waving](media/mantra-waving.gif) |
+| A sly smoke-and-ash familiar who turns every task into a controlled burn. | A serene three-faced mind familiar who meditates through problems from three points of view. |
+
+Their personalities are built into their silhouettes and motion. Frostbyte is balanced, faceted, and composed. Bolt is asymmetric, forward-leaning, and visibly impatient to move. Cinder curls and reforms like a carefully banked ember. Mantra remains in a floating meditative stance while its three original faces embody Focus, Intuition, and Imagination.
 
 ## Install
 
@@ -31,7 +36,7 @@ The official desktop path is the recommended method:
 
 1. Download the [drag-and-drop pet pack](https://github.com/Ashyboy219/codex-elemental-pets/releases/latest/download/codex-elemental-pets-drag-and-drop.zip).
 2. In Codex, open **Settings → Pets → Custom pets → Open folder**.
-3. Copy the `frostbyte` and/or `bolt` folder from the downloaded pack into the folder Codex opened.
+3. Copy any of the `frostbyte`, `bolt`, `cinder`, or `mantra` folders from the downloaded pack into the folder Codex opened.
 4. Return to **Settings → Pets**, choose **Refresh**, then select your new companion.
 
 See OpenAI's [official Pets documentation](https://developers.openai.com/codex/pets) for the current desktop, web, and CLI behavior.
@@ -60,11 +65,11 @@ If a newly copied pet is not visible, use **Refresh** in Pets before restarting 
 
 ## Ultra evolved-forms concept
 
-The showcase includes Normal and Ultra visual studies for both pets. The proposed Ultra form is a static evolved design shown through an immediate, non-animated swap—there is no transformation sequence or ambient effect. Ultra is an upstream concept, not current runtime behavior: Codex custom pets do not receive reasoning-effort events and currently load one atlas per pet. The [v3 manifest and event proposal](ULTRA_EVOLUTION_PROPOSAL.md) describes a backwards-compatible path for selecting alternate forms.
+The showcase includes Normal and Ultra visual studies for Frostbyte and Bolt only. The proposed Ultra form is a static evolved design shown through an immediate, non-animated swap—there is no transformation sequence or ambient effect. Cinder and Mantra do not have proposed evolved forms. Ultra is an upstream concept, not current runtime behavior: Codex custom pets do not receive reasoning-effort events and currently load one atlas per pet. The [v3 manifest and event proposal](ULTRA_EVOLUTION_PROPOSAL.md) describes a backwards-compatible path for selecting alternate forms.
 
 ## Why these are more than character stickers
 
-Each pet includes:
+Each of the four pets includes:
 
 - a validated `1536 × 2288` transparent WebP atlas;
 - 11 animation rows and 73 populated frames;
@@ -75,10 +80,10 @@ Each pet includes:
 
 ## Media kit
 
-- [Ultra evolved-form concept video — Reels, TikTok, and Shorts](media/evolution-showcase-vertical-1080x1920.mp4)
-- [Ultra evolved-form concept video — X, LinkedIn, and YouTube](media/evolution-showcase-landscape-1920x1080.mp4)
-- [Vertical video — Reels, TikTok, Shorts, and mobile feeds](media/showcase-vertical-1080x1920.mp4)
-- [Landscape video — X, LinkedIn, YouTube, and presentations](media/showcase-landscape-1920x1080.mp4)
+- [Frostbyte and Bolt evolved-form concept video — Reels, TikTok, and Shorts](media/evolution-showcase-vertical-1080x1920.mp4)
+- [Frostbyte and Bolt evolved-form concept video — X, LinkedIn, and YouTube](media/evolution-showcase-landscape-1920x1080.mp4)
+- [Four-pet vertical showcase — Reels, TikTok, Shorts, and mobile feeds](media/showcase-vertical-1080x1920.mp4)
+- [Four-pet landscape showcase — X, LinkedIn, YouTube, and presentations](media/showcase-landscape-1920x1080.mp4)
 - [Square launch image](media/poster-square-1080x1080.png)
 - [Landscape launch image](media/poster-landscape-1200x675.png)
 - [Ready-to-post captions and launch checklist](social/POSTS.md)
