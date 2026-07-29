@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 — 2026-07-29
+
+- Expanded the collection from four pets to six with Sprig, a patient nature familiar, and Ping, an attentive sound familiar.
+- Added six-pet manifest and installer coverage plus future-facing one-click Codex desktop install routes for Sprig and Ping.
+- Added accessible Sprig and Ping roster cards and responsive three-column desktop presentation while keeping the static evolved-form concept limited to Frostbyte and Bolt.
+- Updated project, licensing, showcase, citation, and social copy for the six-pet collection.
+
 ## 1.2.0 — 2026-07-14
 
 - Expanded the collection from two pets to four with Cinder, a smoke-and-ash familiar, and Mantra, an original tri-faced mind familiar representing Focus, Intuition, and Imagination.

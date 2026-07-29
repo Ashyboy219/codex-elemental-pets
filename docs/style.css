@@ -14,6 +14,10 @@
   --cinder-deep: #7d2d22;
   --mind: #cfb8ff;
   --mind-deep: #49318a;
+  --nature: #c1eb70;
+  --nature-deep: #355f2d;
+  --sound: #69e3d7;
+  --sound-deep: #165766;
   --focus: #ffffff;
   --content: 1180px;
   --radius: 16px;
@@ -272,6 +276,8 @@ code {
 .bolt-install { background: var(--bolt); }
 .cinder-install { background: var(--cinder); }
 .mantra-install { background: var(--mind); }
+.sprig-install { background: var(--nature); }
+.ping-install { background: var(--sound); }
 .script-install {
   margin-top: 54px;
   padding: 20px 24px;
@@ -305,7 +311,7 @@ pre {
 .roster-grid {
   margin-top: 54px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 .roster-card {
@@ -347,9 +353,13 @@ pre {
 .bolt-roster { background: linear-gradient(160deg, rgba(127, 75, 0, .46), #161326 65%); }
 .cinder-roster { background: linear-gradient(160deg, rgba(125, 45, 34, .58), #191318 65%); }
 .mantra-roster { background: linear-gradient(160deg, rgba(73, 49, 138, .62), #121426 65%); }
+.sprig-roster { background: linear-gradient(160deg, rgba(53, 95, 45, .62), #101a16 65%); }
+.ping-roster { background: linear-gradient(160deg, rgba(22, 87, 102, .62), #101824 65%); }
 .bolt-roster .element-label { color: var(--bolt); }
 .cinder-roster .element-label { color: var(--cinder); }
 .mantra-roster .element-label { color: var(--mind); }
+.sprig-roster .element-label { color: var(--nature); }
+.ping-roster .element-label { color: var(--sound); }
 
 .evolution {
   padding: 104px 0 124px;
@@ -574,6 +584,8 @@ footer {
   .bolt-roster-still { background-image: url("pets/bolt/spritesheet.webp"); }
   .cinder-roster-still { background-image: url("pets/cinder/spritesheet.webp"); }
   .mantra-roster-still { background-image: url("pets/mantra/spritesheet.webp"); }
+  .sprig-roster-still { background-image: url("pets/sprig/spritesheet.webp"); }
+  .ping-roster-still { background-image: url("pets/ping/spritesheet.webp"); }
   .button { transition: none; }
   .button:hover { transform: none; }
 }
