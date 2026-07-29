@@ -1,7 +1,7 @@
 {
   "name": "Codex Elemental Pets",
-  "version": "1.2.0",
-  "description": "Four unofficial, fully animated elemental pets for Codex, plus an upstream static Ultra evolved-forms concept for Frostbyte and Bolt.",
+  "version": "1.3.0",
+  "description": "Six unofficial, fully animated elemental pets for Codex, plus an upstream static Ultra evolved-forms concept for Frostbyte and Bolt.",
   "repository": "https://github.com/Ashyboy219/codex-elemental-pets",
   "homepage": "https://ashyboy219.github.io/codex-elemental-pets/",
   "ultraEvolvedFormsProposal": "ULTRA_EVOLUTION_PROPOSAL.md",
@@ -24,6 +24,16 @@
     {
       "id": "mantra",
       "path": "pets/mantra",
+      "spriteVersionNumber": 2
+    },
+    {
+      "id": "sprig",
+      "path": "pets/sprig",
+      "spriteVersionNumber": 2
+    },
+    {
+      "id": "ping",
+      "path": "pets/ping",
       "spriteVersionNumber": 2
     }
   ]

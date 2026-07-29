@@ -1,0 +1,7 @@
+{
+  "id": "ping",
+  "displayName": "Ping",
+  "description": "An attentive sound familiar who listens for hidden problems and tunes every solution into place.",
+  "spriteVersionNumber": 2,
+  "spritesheetPath": "spritesheet.webp"
+}
