@@ -30,7 +30,7 @@ Direction proof: https://github.com/Ashyboy219/codex-elemental-pets#why-these-ar
 
 Attach: `media/frostbyte-directions.png`, `media/bolt-directions.png`, `media/cinder-directions.png`, `media/mantra-directions.png`, `media/sprig-directions.png`, `media/ping-directions.png`, `media/luma-directions.png`, and `media/tink-directions.png`
 
-## X — Ultra concept reply
+## X — Evolved forms reply
 
 The site also previews static Normal and Ultra evolved-form art for Frostbyte and Bolt—an immediate visual swap with no transformation or ambient effect. Cinder, Mantra, Sprig, Ping, Luma, and Tink remain focused on their complete normal animation systems.
 
