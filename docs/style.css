@@ -18,6 +18,10 @@
   --nature-deep: #355f2d;
   --sound: #69e3d7;
   --sound-deep: #165766;
+  --light: #f3f1e8;
+  --light-deep: #6f557d;
+  --metal: #b9c5c9;
+  --metal-deep: #46555b;
   --focus: #ffffff;
   --content: 1180px;
   --radius: 16px;
@@ -278,6 +282,8 @@ code {
 .mantra-install { background: var(--mind); }
 .sprig-install { background: var(--nature); }
 .ping-install { background: var(--sound); }
+.luma-install { background: var(--light); }
+.tink-install { background: var(--metal); }
 .script-install {
   margin-top: 54px;
   padding: 20px 24px;
@@ -311,7 +317,7 @@ pre {
 .roster-grid {
   margin-top: 54px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 .roster-card {
@@ -355,11 +361,15 @@ pre {
 .mantra-roster { background: linear-gradient(160deg, rgba(73, 49, 138, .62), #121426 65%); }
 .sprig-roster { background: linear-gradient(160deg, rgba(53, 95, 45, .62), #101a16 65%); }
 .ping-roster { background: linear-gradient(160deg, rgba(22, 87, 102, .62), #101824 65%); }
+.luma-roster { background: radial-gradient(circle at 76% 12%, rgba(203, 174, 255, .25), transparent 36%), linear-gradient(160deg, rgba(255, 184, 137, .34), #151525 68%); }
+.tink-roster { background: radial-gradient(circle at 76% 12%, rgba(68, 213, 197, .22), transparent 36%), linear-gradient(160deg, rgba(202, 118, 72, .34), #141b20 68%); }
 .bolt-roster .element-label { color: var(--bolt); }
 .cinder-roster .element-label { color: var(--cinder); }
 .mantra-roster .element-label { color: var(--mind); }
 .sprig-roster .element-label { color: var(--nature); }
 .ping-roster .element-label { color: var(--sound); }
+.luma-roster .element-label { color: var(--light); }
+.tink-roster .element-label { color: var(--metal); }
 
 .evolution {
   padding: 104px 0 124px;
@@ -586,6 +596,8 @@ footer {
   .mantra-roster-still { background-image: url("pets/mantra/spritesheet.webp"); }
   .sprig-roster-still { background-image: url("pets/sprig/spritesheet.webp"); }
   .ping-roster-still { background-image: url("pets/ping/spritesheet.webp"); }
+  .luma-roster-still { background-image: url("pets/luma/spritesheet.webp"); }
+  .tink-roster-still { background-image: url("pets/tink/spritesheet.webp"); }
   .button { transition: none; }
   .button:hover { transform: none; }
 }

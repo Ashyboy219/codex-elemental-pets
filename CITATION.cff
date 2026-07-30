@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Codex Elemental Pets: Frostbyte, Bolt, Cinder, Mantra, Sprig, and Ping"
+title: "Codex Elemental Pets: Frostbyte, Bolt, Cinder, Mantra, Sprig, Ping, Luma, and Tink"
 message: "If you use or remix these pets, please credit this repository."
 type: software
 authors:
@@ -7,5 +7,5 @@ authors:
 repository-code: "https://github.com/Ashyboy219/codex-elemental-pets"
 url: "https://ashyboy219.github.io/codex-elemental-pets/"
 license: MIT
-version: 1.3.0
+version: 1.4.0
 date-released: 2026-07-29
