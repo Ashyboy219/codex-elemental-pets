@@ -10,11 +10,11 @@ Codex desktop users, open-source developers, and creative-coding enthusiasts who
 
 ## Product Purpose
 
-Present Frostbyte, Bolt, Cinder, Mantra, Sprig, and Ping as a distinct six-pet elemental collection, make the official Codex desktop installation path unmistakable, and document the production quality behind their v2 animation atlases. Success means a visitor understands each pet at a glance and can install one without guessing where its files belong.
+Present Frostbyte, Bolt, Cinder, Mantra, Sprig, Ping, Luma, and Tink as a distinct eight-pet elemental collection, make the official Codex desktop installation path unmistakable, and document the production quality behind their v2 animation atlases. Success means a visitor understands each pet at a glance and can install one without guessing where its files belong.
 
 ## Brand Personality
 
-Elemental, kinetic, crafted. Frostbyte contributes calm precision; Bolt contributes restless momentum; Cinder contributes sly, controlled chaos; Mantra contributes serene, many-sided reflection; Sprig contributes patient, deliberate growth; Ping contributes attentive, rhythmic perception. The shared voice is playful but technically honest.
+Elemental, kinetic, crafted. Frostbyte contributes calm precision; Bolt contributes restless momentum; Cinder contributes sly, controlled chaos; Mantra contributes serene, many-sided reflection; Sprig contributes patient, deliberate growth; Ping contributes attentive, rhythmic perception; Luma contributes gentle curiosity and clarifying light; Tink contributes dependable craft and practical reinforcement. The shared voice is playful but technically honest.
 
 ## Anti-references
 
@@ -31,4 +31,4 @@ Avoid text-first SaaS landing pages, generic developer-tool dashboards, decorati
 
 ## Accessibility & Inclusion
 
-Target WCAG 2.1 AA contrast and keyboard operation. Honor `prefers-reduced-motion`, provide non-motion state changes, write descriptive image alternatives, and never rely on ice-blue, lightning-yellow, ember-orange, mind-violet, nature-green, or sound-teal alone to communicate state. Mantra is an original tri-faced mind mascot whose faces represent Focus, Intuition, and Imagination; its design avoids depictions of deities and sacred symbols.
+Target WCAG 2.1 AA contrast and keyboard operation. Honor `prefers-reduced-motion`, provide non-motion state changes, write descriptive image alternatives, and never rely on ice-blue, lightning-yellow, ember-orange, mind-violet, nature-green, sound-teal, light-opal, or metal-pewter alone to communicate state. Mantra is an original tri-faced mind mascot whose faces represent Focus, Intuition, and Imagination; its design avoids depictions of deities and sacred symbols.

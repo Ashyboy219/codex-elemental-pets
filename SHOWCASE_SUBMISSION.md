@@ -40,7 +40,7 @@ No.
 
 **Building process**
 
-Codex inspected the existing pet language and developed six personality-led directions across ice, lightning, smoke and ash, mind, nature, and sound. It generated and repaired semantic animation rows from canonical identities, assembled validated v2 atlases, ran deterministic and independent visual QA, implemented the official local install flow, and produced a static Frostbyte and Bolt Ultra evolved-form product concept plus social media.
+Codex inspected the existing pet language and developed eight personality-led directions across ice, lightning, smoke and ash, mind, nature, sound, light, and metal. It generated and repaired semantic animation rows from canonical identities, assembled validated v2 atlases, ran deterministic and independent visual QA, implemented the official local install flow, and produced a static Frostbyte and Bolt Ultra evolved-form product concept plus social media.
 
 ## Project details
 
@@ -54,21 +54,21 @@ https://ashyboy219.github.io/codex-elemental-pets/
 
 **Setup steps**
 
-Open Codex desktop and go to Settings > Pets > Custom pets > Open folder. Download the latest pet pack, copy any of the Frostbyte, Bolt, Cinder, Mantra, Sprig, or Ping folders into that directory, then return to Pets, select Refresh, and choose a pet. The project site also offers Codex desktop one-click install buttons for all six.
+Open Codex desktop and go to Settings > Pets > Custom pets > Open folder. Download the latest pet pack, copy any of the Frostbyte, Bolt, Cinder, Mantra, Sprig, Ping, Luma, or Tink folders into that directory, then return to Pets, select Refresh, and choose a pet. The project site also offers Codex desktop one-click install buttons for all eight.
 
 **Project title**
 
-Codex Elemental Pets: Six Animated Companions
+Codex Elemental Pets: Eight Animated Companions
 
 **Tagline**
 
-Six personality-rich companions with complete animation systems—and a focused proposal for Frostbyte and Bolt evolved forms in Ultra mode.
+Eight personality-rich companions with complete animation systems—and a focused proposal for Frostbyte and Bolt evolved forms in Ultra mode.
 
 **Project description**
 
-Codex Elemental Pets is an unofficial six-pet community collection built to feel native to Codex. Frostbyte brings calm crystalline precision, Bolt brings restless electric momentum, Cinder brings sly smoke-and-ash control, and Mantra brings serene reflection through an original tri-faced design representing Focus, Intuition, and Imagination. Sprig approaches hard problems with patient, deliberate growth, while Ping listens for subtle issues and tunes each solution into place. Every installable pet carries a coherent identity through the complete v2 animation contract, including active-work behavior, status reactions, and 16-direction look tracking.
+Codex Elemental Pets is an unofficial eight-pet community collection built to feel native to Codex. Frostbyte brings calm crystalline precision, Bolt brings restless electric momentum, Cinder brings sly smoke-and-ash control, and Mantra brings serene reflection through an original tri-faced design representing Focus, Intuition, and Imagination. Sprig approaches hard problems with patient, deliberate growth, while Ping listens for subtle issues and tunes each solution into place. Luma is a gentle light familiar who brings clarity to difficult work, one bright little discovery at a time. Tink is a dependable metal familiar who repairs weak spots and makes every solution feel securely finished. Every installable pet carries a coherent identity through the complete v2 animation contract, including active-work behavior, status reactions, and 16-direction look tracking.
 
-The project also explores a future-facing idea for Frostbyte and Bolt: when a task enters Ultra reasoning, either pet could immediately switch to a more powerful evolved form. The concept intentionally uses a static, non-animated form swap with no transformation sequence or ambient effect. Cinder, Mantra, Sprig, and Ping have no evolved-form concept. The site demonstrates the focused visual comparison and the repository includes a backwards-compatible implementation proposal; current Codex does not yet expose reasoning effort to custom pets.
+The project also explores a future-facing idea for Frostbyte and Bolt: when a task enters Ultra reasoning, either pet could immediately switch to a more powerful evolved form. The concept intentionally uses a static, non-animated form swap with no transformation sequence or ambient effect. Cinder, Mantra, Sprig, Ping, Luma, and Tink have no evolved-form concept. The site demonstrates the focused visual comparison and the repository includes a backwards-compatible implementation proposal; current Codex does not yet expose reasoning effort to custom pets.
 
 **Author name**
 

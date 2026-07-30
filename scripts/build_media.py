@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build social-native launch media from the six validated Codex pet atlases."""
+"""Build social-native launch media from the eight validated Codex pet atlases."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ DOCS_ASSETS = ROOT / "docs" / "assets"
 FPS = 24
 DURATION = 18.0
 CELL_W, CELL_H = 192, 208
-PETS = ("frostbyte", "bolt", "cinder", "mantra", "sprig", "ping")
+PETS = ("frostbyte", "bolt", "cinder", "mantra", "sprig", "ping", "luma", "tink")
 SCENE_CUTS = (3.0, 6.0, 9.0, 14.0)
 
 PET_META = {
@@ -65,6 +65,31 @@ PET_META = {
         "accent": (76, 224, 194),
         "secondary": (224, 126, 93),
     },
+    "luma": {
+        "name": "LUMA",
+        "power": "LIGHT / CLARITY",
+        "line": "Gentle. Curious. Illuminates.",
+        "accent": (232, 248, 245),
+        "secondary": (255, 184, 137),
+        "accents": {
+            "opal": (232, 248, 245),
+            "apricot": (255, 184, 137),
+            "lilac": (203, 174, 255),
+            "aqua": (104, 229, 226),
+        },
+    },
+    "tink": {
+        "name": "TINK",
+        "power": "METAL / CRAFT",
+        "line": "Steady. Practical. Reinforces.",
+        "accent": (184, 196, 201),
+        "secondary": (202, 118, 72),
+        "accents": {
+            "pewter": (184, 196, 201),
+            "copper": (202, 118, 72),
+            "turquoise": (68, 213, 197),
+        },
+    },
 }
 
 
@@ -107,7 +132,7 @@ ATLASES: dict[str, Image.Image] = {}
 
 
 def atlas(pet: str) -> Image.Image:
-    """Load one of the six launch atlases on demand."""
+    """Load one of the eight launch atlases on demand."""
     if pet not in PETS:
         raise KeyError(f"Unknown pet: {pet}")
     if pet not in ATLASES:
@@ -115,7 +140,7 @@ def atlas(pet: str) -> Image.Image:
         if not path.exists():
             raise FileNotFoundError(
                 f"Missing validated atlas for {pet}: {path}. "
-                "Land all six pet binaries before running this media build."
+                "Land all eight pet binaries before running this media build."
             )
         loaded = Image.open(path).convert("RGBA")
         expected = (CELL_W * 8, CELL_H * 11)
@@ -191,22 +216,38 @@ def add_particles(image: Image.Image, t: float) -> None:
 
 
 def collection_background(width: int, height: int) -> Image.Image:
-    """Six-field color wash for the complete launch collection."""
+    """Eight-field color wash arranged to suit landscape or portrait media."""
     yy, xx = np.mgrid[0:height, 0:width]
     base = np.zeros((height, width, 3), dtype=np.float32)
     base[:] = (5, 7, 17)
-    fields = (
-        (0.12, 0.24, (7, 45, 68)),   # Frostbyte
-        (0.50, 0.18, (48, 36, 7)),   # Bolt
-        (0.88, 0.24, (51, 23, 16)),  # Cinder
-        (0.13, 0.80, (34, 19, 61)),  # Mantra
-        (0.50, 0.83, (18, 47, 19)),  # Sprig
-        (0.87, 0.79, (10, 45, 46)),  # Ping
-    )
+    if height / width > 1.35:
+        fields = (
+            (0.23, 0.13, (7, 45, 68)),    # Frostbyte
+            (0.77, 0.13, (48, 36, 7)),    # Bolt
+            (0.23, 0.37, (51, 23, 16)),   # Cinder
+            (0.77, 0.37, (34, 19, 61)),   # Mantra
+            (0.23, 0.61, (18, 47, 19)),   # Sprig
+            (0.77, 0.61, (10, 45, 46)),   # Ping
+            (0.23, 0.85, (41, 34, 53)),   # Luma
+            (0.77, 0.85, (38, 31, 28)),   # Tink
+        )
+        field_width, field_height = 0.43, 0.24
+    else:
+        fields = (
+            (0.06, 0.42, (7, 45, 68)),    # Frostbyte
+            (0.185, 0.58, (48, 36, 7)),   # Bolt
+            (0.31, 0.42, (51, 23, 16)),   # Cinder
+            (0.435, 0.58, (34, 19, 61)),  # Mantra
+            (0.565, 0.42, (18, 47, 19)),  # Sprig
+            (0.69, 0.58, (10, 45, 46)),   # Ping
+            (0.815, 0.42, (41, 34, 53)),  # Luma
+            (0.94, 0.58, (38, 31, 28)),   # Tink
+        )
+        field_width, field_height = 0.19, 0.48
     for x_ratio, y_ratio, color in fields:
         distance = (
-            ((xx - width * x_ratio) / (width * 0.31)) ** 2
-            + ((yy - height * y_ratio) / (height * 0.36)) ** 2
+            ((xx - width * x_ratio) / (width * field_width)) ** 2
+            + ((yy - height * y_ratio) / (height * field_height)) ** 2
         )
         base += np.exp(-distance)[..., None] * np.array(color)
     top = np.clip(1.0 - yy / max(height, 1), 0, 1)
@@ -290,6 +331,30 @@ def add_collection_particles(image: Image.Image, t: float) -> None:
         length = 3 + i % 3
         draw.line((x, y, x + length, y), fill=(76, 224, 194, 40), width=1)
         draw.line((x + 2, y + 5, x + 2 + length, y + 5), fill=(224, 126, 93, 34), width=1)
+
+    # Luma: soft discovery points cycling through opal, apricot, lilac, and aqua.
+    luma_accents = PET_META["luma"]["accents"]
+    luma_colors = tuple(luma_accents.values())
+    for i in range(8):
+        x = width * 0.08 + ((i * 79 + math.sin(t * 0.42 + i) * 8) % (width * 0.45))
+        y = height * 0.72 + ((i * 43 - t * (4 + i % 2)) % (height * 0.22))
+        color = luma_colors[i % len(luma_colors)]
+        radius = 1 + i % 2
+        draw.ellipse(
+            (x - radius, y - radius, x + radius, y + radius),
+            fill=(*color, 32 + i % 3 * 6),
+        )
+
+    # Tink: tiny rivets and reinforced corners in pewter, copper, and turquoise.
+    tink_accents = PET_META["tink"]["accents"]
+    tink_colors = tuple(tink_accents.values())
+    for i in range(7):
+        x = width * 0.54 + ((i * 91 + t * (5 + i % 3)) % (width * 0.40))
+        y = height * 0.74 + ((i * 41) % (height * 0.19))
+        color = tink_colors[i % len(tink_colors)]
+        draw.rectangle((x, y, x + 2, y + 2), fill=(*color, 38))
+        draw.line((x + 4, y, x + 9, y), fill=(*color, 30), width=1)
+        draw.line((x + 9, y, x + 9, y + 5), fill=(*color, 30), width=1)
 
 
 def draw_chip(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, scale: float) -> None:
@@ -392,9 +457,9 @@ def render_frame(width: int, height: int, t: float, vertical: bool) -> Image.Ima
     scale = width / (720 if vertical else 1280)
     safe = int(34 * scale)
     draw_chip(draw, (safe, safe), "UNOFFICIAL COMMUNITY PETS", scale)
-    hook_end, sprig_end, ping_end, proof_end = SCENE_CUTS
+    hook_end, luma_end, tink_end, proof_end = SCENE_CUTS
 
-    # Scene 1 — an opening hook with the complete six-pet crew.
+    # Scene 1 — an opening hook with the complete eight-pet crew.
     if t < hook_end:
         alpha = scene_fade(t, 0.0, hook_end, 0.18)
         title_size = int((56 if vertical else 57) * scale)
@@ -405,7 +470,7 @@ def render_frame(width: int, height: int, t: float, vertical: bool) -> Image.Ima
         draw_centered(
             draw,
             y,
-            "SIX POWERS.",
+            "EIGHT POWERS.",
             title,
             (244, 248, 255, int(255 * alpha)),
             width,
@@ -425,31 +490,43 @@ def render_frame(width: int, height: int, t: float, vertical: bool) -> Image.Ima
         draw_centered(
             draw,
             y + int(143 * scale),
-            "Frostbyte  •  Bolt  •  Cinder  •  Mantra  •  Sprig  •  Ping",
+            "Frostbyte  •  Bolt  •  Cinder  •  Mantra",
+            sub,
+            (189, 211, 242, int(235 * alpha)),
+            width,
+        )
+        draw_centered(
+            draw,
+            y + int(170 * scale),
+            "Sprig  •  Ping  •  Luma  •  Tink",
             sub,
             (189, 211, 242, int(235 * alpha)),
             width,
         )
         if vertical:
             positions = (
-                ("frostbyte", 0.27, 575, "waving", 0.00),
-                ("bolt", 0.73, 575, "jumping", 0.18),
-                ("cinder", 0.27, 910, "running", 0.31),
-                ("mantra", 0.73, 910, "idle", 0.47),
-                ("sprig", 0.27, 1245, "review", 0.62),
-                ("ping", 0.73, 1245, "waving", 0.78),
+                ("frostbyte", 0.27, 520, "waving", 0.00),
+                ("bolt", 0.73, 520, "jumping", 0.14),
+                ("cinder", 0.27, 760, "running", 0.28),
+                ("mantra", 0.73, 760, "idle", 0.42),
+                ("sprig", 0.27, 1000, "review", 0.56),
+                ("ping", 0.73, 1000, "waving", 0.70),
+                ("luma", 0.27, 1240, "review", 0.84),
+                ("tink", 0.73, 1240, "running", 0.98),
             )
-            sprite_scale = 1.05 * scale
+            sprite_scale = 0.82 * scale
         else:
             positions = (
-                ("frostbyte", 0.085, 650, "waving", 0.00),
-                ("bolt", 0.25, 650, "jumping", 0.18),
-                ("cinder", 0.415, 650, "running", 0.31),
-                ("mantra", 0.585, 650, "idle", 0.47),
-                ("sprig", 0.75, 650, "review", 0.62),
-                ("ping", 0.915, 650, "waving", 0.78),
+                ("frostbyte", 0.06, 650, "waving", 0.00),
+                ("bolt", 0.185, 650, "jumping", 0.14),
+                ("cinder", 0.31, 650, "running", 0.28),
+                ("mantra", 0.435, 650, "idle", 0.42),
+                ("sprig", 0.565, 650, "review", 0.56),
+                ("ping", 0.69, 650, "waving", 0.70),
+                ("luma", 0.815, 650, "review", 0.84),
+                ("tink", 0.94, 650, "running", 0.98),
             )
-            sprite_scale = 0.92 * scale
+            sprite_scale = 0.68 * scale
         for pet, x_ratio, baseline, state, offset in positions:
             draw_sprite(
                 image,
@@ -462,83 +539,87 @@ def render_frame(width: int, height: int, t: float, vertical: bool) -> Image.Ima
                 alpha,
             )
 
-    # Scene 2 — Sprig gets a patient, growth-minded launch spotlight.
-    elif t < sprig_end:
+    # Scene 2 — Luma gets a gentle, discovery-minded launch spotlight.
+    elif t < luma_end:
         local = t - hook_end
-        alpha = scene_fade(t, hook_end, sprig_end)
+        alpha = scene_fade(t, hook_end, luma_end)
         title = font(FONT_BOLD, int((78 if vertical else 76) * scale))
         kicker = font(FONT_MONO, int(18 * scale))
         body = font(FONT_REGULAR, int((26 if vertical else 25) * scale))
-        meta = PET_META["sprig"]
+        meta = PET_META["luma"]
         if vertical:
-            draw_power_field(image, "sprig", width // 2, int(675 * scale), int(300 * scale), alpha)
-            draw_centered(draw, int(148 * scale), meta["name"], title, (*meta["accent"], int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(31, 8, 5, 190))
+            draw_power_field(image, "luma", width // 2, int(675 * scale), int(300 * scale), alpha)
+            draw_centered(draw, int(148 * scale), meta["name"], title, (*meta["accent"], int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(18, 12, 31, 190))
             draw_centered(draw, int(242 * scale), meta["power"], kicker, (*meta["secondary"], int(235 * alpha)), width)
-            draw_centered(draw, int(1050 * scale), meta["line"], body, (241, 225, 220, int(240 * alpha)), width)
+            draw_centered(draw, int(1050 * scale), meta["line"], body, (244, 240, 248, int(240 * alpha)), width)
             state = "running" if local < 1.5 else "review"
-            draw_sprite(image, "sprig", state, local, width // 2, int(985 * scale), 2.45 * scale, alpha)
+            draw_sprite(image, "luma", state, local, width // 2, int(985 * scale), 2.45 * scale, alpha)
         else:
-            draw_power_field(image, "sprig", int(width * 0.72), int(400 * scale), int(260 * scale), alpha)
-            draw.text((int(92 * scale), int(150 * scale)), meta["name"], font=title, fill=(*meta["accent"], int(255 * alpha)), stroke_width=max(1, int(2 * scale)), stroke_fill=(31, 8, 5, 190))
+            draw_power_field(image, "luma", int(width * 0.72), int(400 * scale), int(260 * scale), alpha)
+            draw.text((int(92 * scale), int(150 * scale)), meta["name"], font=title, fill=(*meta["accent"], int(255 * alpha)), stroke_width=max(1, int(2 * scale)), stroke_fill=(18, 12, 31, 190))
             draw.text((int(96 * scale), int(242 * scale)), meta["power"], font=kicker, fill=(*meta["secondary"], int(235 * alpha)))
-            draw.text((int(96 * scale), int(296 * scale)), "Patient. Steady.\nBranches.", font=body, fill=(241, 225, 220, int(240 * alpha)), spacing=int(10 * scale))
+            draw.text((int(96 * scale), int(296 * scale)), "Gentle. Curious.\nIlluminates.", font=body, fill=(244, 240, 248, int(240 * alpha)), spacing=int(10 * scale))
             state = "running" if local < 1.5 else "review"
-            draw_sprite(image, "sprig", state, local, int(width * 0.72), int(670 * scale), 2.45 * scale, alpha)
+            draw_sprite(image, "luma", state, local, int(width * 0.72), int(670 * scale), 2.45 * scale, alpha)
 
-    # Scene 3 — Ping gets a rhythmic, attentive signal spotlight.
-    elif t < ping_end:
-        local = t - sprig_end
-        alpha = scene_fade(t, sprig_end, ping_end)
+    # Scene 3 — Tink gets a practical, reinforcement-minded launch spotlight.
+    elif t < tink_end:
+        local = t - luma_end
+        alpha = scene_fade(t, luma_end, tink_end)
         title = font(FONT_BOLD, int((82 if vertical else 80) * scale))
         kicker = font(FONT_MONO, int(18 * scale))
         body = font(FONT_REGULAR, int((26 if vertical else 25) * scale))
-        meta = PET_META["ping"]
+        meta = PET_META["tink"]
         if vertical:
-            draw_power_field(image, "ping", width // 2, int(650 * scale), int(315 * scale), alpha)
-            draw_centered(draw, int(148 * scale), meta["name"], title, (*meta["accent"], int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(13, 7, 37, 190))
+            draw_power_field(image, "tink", width // 2, int(650 * scale), int(315 * scale), alpha)
+            draw_centered(draw, int(148 * scale), meta["name"], title, (*meta["accent"], int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(15, 18, 22, 190))
             draw_centered(draw, int(246 * scale), meta["power"], kicker, (*meta["secondary"], int(235 * alpha)), width)
-            draw_centered(draw, int(1050 * scale), meta["line"], body, (232, 228, 251, int(240 * alpha)), width)
-            state = "waiting" if local < 1.5 else "review"
-            draw_sprite(image, "ping", state, local, width // 2, int(985 * scale), 2.45 * scale, alpha, rate=4.5)
+            draw_centered(draw, int(1050 * scale), meta["line"], body, (230, 232, 233, int(240 * alpha)), width)
+            state = "running" if local < 1.5 else "review"
+            draw_sprite(image, "tink", state, local, width // 2, int(985 * scale), 2.45 * scale, alpha, rate=4.5)
         else:
-            draw_power_field(image, "ping", int(width * 0.30), int(400 * scale), int(270 * scale), alpha)
-            draw.text((int(762 * scale), int(150 * scale)), meta["name"], font=title, fill=(*meta["accent"], int(255 * alpha)), stroke_width=max(1, int(2 * scale)), stroke_fill=(13, 7, 37, 190))
+            draw_power_field(image, "tink", int(width * 0.30), int(400 * scale), int(270 * scale), alpha)
+            draw.text((int(762 * scale), int(150 * scale)), meta["name"], font=title, fill=(*meta["accent"], int(255 * alpha)), stroke_width=max(1, int(2 * scale)), stroke_fill=(15, 18, 22, 190))
             draw.text((int(766 * scale), int(246 * scale)), meta["power"], font=kicker, fill=(*meta["secondary"], int(235 * alpha)))
-            draw.text((int(766 * scale), int(300 * scale)), "Attentive. Rhythmic.\nTuned.", font=body, fill=(232, 228, 251, int(240 * alpha)), spacing=int(10 * scale))
-            state = "waiting" if local < 1.5 else "review"
-            draw_sprite(image, "ping", state, local, int(width * 0.30), int(670 * scale), 2.45 * scale, alpha, rate=4.5)
+            draw.text((int(766 * scale), int(300 * scale)), "Steady. Practical.\nReinforces.", font=body, fill=(230, 232, 233, int(240 * alpha)), spacing=int(10 * scale))
+            state = "running" if local < 1.5 else "review"
+            draw_sprite(image, "tink", state, local, int(width * 0.30), int(670 * scale), 2.45 * scale, alpha, rate=4.5)
 
-    # Scene 4 — all six prove the shared direction system.
+    # Scene 4 — all eight prove the shared direction system.
     elif t < proof_end:
-        local = t - ping_end
-        alpha = scene_fade(t, ping_end, proof_end)
+        local = t - tink_end
+        alpha = scene_fade(t, tink_end, proof_end)
         big = font(FONT_BOLD, int((38 if vertical else 50) * scale))
         stat = font(FONT_MONO, int((17 if vertical else 19) * scale))
         y = int((132 if vertical else 58) * scale)
         draw_centered(draw, y, "PERSONALITY IN EVERY POSE", big, (246, 248, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(5, 7, 18, 190))
-        draw_centered(draw, y + int(75 * scale), "6 PETS  •  11 ROWS EACH  •  16 LOOK DIRECTIONS", stat, (171, 199, 236, int(235 * alpha)), width)
-        state = "look-up-to-down" if local < (proof_end - ping_end) / 2 else "look-down-to-up"
+        draw_centered(draw, y + int(75 * scale), "8 PETS  •  11 ROWS EACH  •  16 LOOK DIRECTIONS", stat, (171, 199, 236, int(235 * alpha)), width)
+        state = "look-up-to-down" if local < (proof_end - tink_end) / 2 else "look-down-to-up"
         if vertical:
             positions = (
-                ("frostbyte", 0.27, 520, 0.00),
-                ("bolt", 0.73, 520, 0.11),
-                ("cinder", 0.27, 855, 0.22),
-                ("mantra", 0.73, 855, 0.33),
-                ("sprig", 0.27, 1190, 0.44),
-                ("ping", 0.73, 1190, 0.55),
+                ("frostbyte", 0.27, 465, 0.00),
+                ("bolt", 0.73, 465, 0.09),
+                ("cinder", 0.27, 700, 0.18),
+                ("mantra", 0.73, 700, 0.27),
+                ("sprig", 0.27, 935, 0.36),
+                ("ping", 0.73, 935, 0.45),
+                ("luma", 0.27, 1170, 0.54),
+                ("tink", 0.73, 1170, 0.63),
             )
-            sprite_scale = 1.02 * scale
+            sprite_scale = 0.80 * scale
             tag_offset = int(12 * scale)
         else:
             positions = (
-                ("frostbyte", 0.085, 648, 0.00),
-                ("bolt", 0.25, 648, 0.11),
-                ("cinder", 0.415, 648, 0.22),
-                ("mantra", 0.585, 648, 0.33),
-                ("sprig", 0.75, 648, 0.44),
-                ("ping", 0.915, 648, 0.55),
+                ("frostbyte", 0.06, 648, 0.00),
+                ("bolt", 0.185, 648, 0.09),
+                ("cinder", 0.31, 648, 0.18),
+                ("mantra", 0.435, 648, 0.27),
+                ("sprig", 0.565, 648, 0.36),
+                ("ping", 0.69, 648, 0.45),
+                ("luma", 0.815, 648, 0.54),
+                ("tink", 0.94, 648, 0.63),
             )
-            sprite_scale = 0.88 * scale
+            sprite_scale = 0.67 * scale
             tag_offset = int(10 * scale)
         for pet, x_ratio, baseline, offset in positions:
             center_x = int(width * x_ratio)
@@ -555,28 +636,32 @@ def render_frame(width: int, height: int, t: float, vertical: bool) -> Image.Ima
         mono = font(FONT_MONO, int((15 if vertical else 17) * scale))
         y = int((122 if vertical else 55) * scale)
         draw_centered(draw, y, "OPEN-SOURCE. READY TO HATCH.", title, (247, 249, 255, int(255 * alpha)), width, stroke=max(1, int(2 * scale)), stroke_fill=(4, 6, 15, 200))
-        draw_centered(draw, y + int(82 * scale), "Six fully animated pets for Codex  •  v1.3.0", body, (188, 211, 240, int(235 * alpha)), width)
+        draw_centered(draw, y + int(82 * scale), "Eight fully animated pets for Codex  •  v1.4.0", body, (188, 211, 240, int(235 * alpha)), width)
         if vertical:
             positions = (
-                ("frostbyte", 0.27, 520, 0.00),
-                ("bolt", 0.73, 520, 0.18),
-                ("cinder", 0.27, 850, 0.36),
-                ("mantra", 0.73, 850, 0.54),
-                ("sprig", 0.27, 1175, 0.72),
-                ("ping", 0.73, 1175, 0.90),
+                ("frostbyte", 0.27, 445, 0.00),
+                ("bolt", 0.73, 445, 0.14),
+                ("cinder", 0.27, 685, 0.28),
+                ("mantra", 0.73, 685, 0.42),
+                ("sprig", 0.27, 925, 0.56),
+                ("ping", 0.73, 925, 0.70),
+                ("luma", 0.27, 1165, 0.84),
+                ("tink", 0.73, 1165, 0.98),
             )
-            sprite_scale = 1.02 * scale
+            sprite_scale = 0.78 * scale
             link_y = int(1248 * scale)
         else:
             positions = (
-                ("frostbyte", 0.085, 625, 0.00),
-                ("bolt", 0.25, 625, 0.18),
-                ("cinder", 0.415, 625, 0.36),
-                ("mantra", 0.585, 625, 0.54),
-                ("sprig", 0.75, 625, 0.72),
-                ("ping", 0.915, 625, 0.90),
+                ("frostbyte", 0.06, 625, 0.00),
+                ("bolt", 0.185, 625, 0.14),
+                ("cinder", 0.31, 625, 0.28),
+                ("mantra", 0.435, 625, 0.42),
+                ("sprig", 0.565, 625, 0.56),
+                ("ping", 0.69, 625, 0.70),
+                ("luma", 0.815, 625, 0.84),
+                ("tink", 0.94, 625, 0.98),
             )
-            sprite_scale = 0.86 * scale
+            sprite_scale = 0.65 * scale
             link_y = int(660 * scale)
         for pet, x_ratio, baseline, offset in positions:
             draw_sprite(image, pet, "waving", local + offset, int(width * x_ratio), int(baseline * scale), sprite_scale, alpha)
@@ -601,8 +686,8 @@ def make_audio(path: Path) -> None:
     t = np.arange(n, dtype=np.float64) / rate
     audio = np.zeros(n, dtype=np.float64)
 
-    # Low, original six-note synth bed shared by the complete crew.
-    chord = (110.0, 146.83, 164.81, 220.0, 293.66, 329.63)
+    # Low, original eight-note synth bed shared by the complete crew.
+    chord = (110.0, 146.83, 164.81, 196.0, 220.0, 246.94, 293.66, 329.63)
     for i, frequency in enumerate(chord):
         audio += (0.020 / (i + 1) ** 0.25) * np.sin(2 * np.pi * frequency * t + i * 0.7)
     audio *= 0.72 + 0.28 * np.sin(2 * np.pi * 0.08 * t) ** 2
@@ -614,10 +699,10 @@ def make_audio(path: Path) -> None:
         local = np.arange(length) / rate
         audio[start:start + length] += 0.045 * np.sin(2 * np.pi * 72 * local) * np.exp(-local * 24)
     for cut, base in (
-        (0.0, 660),             # Six-pet hook.
-        (SCENE_CUTS[0], 392),  # Sprig: grounded leaf-and-bark tone.
-        (SCENE_CUTS[1], 880),  # Ping: clear rhythmic signal tone.
-        (SCENE_CUTS[2], 740),  # All-six direction proof.
+        (0.0, 660),             # Eight-pet hook.
+        (SCENE_CUTS[0], 784),  # Luma: gentle high discovery tone.
+        (SCENE_CUTS[1], 523),  # Tink: stable crafted interval.
+        (SCENE_CUTS[2], 740),  # All-eight direction proof.
         (SCENE_CUTS[3], 990),  # CTA.
     ):
         start = int(cut * rate)
@@ -684,54 +769,61 @@ def poster(path: Path, width: int, height: int, vertical: bool) -> None:
         title_size, subtitle_size, mono_size = 76, 26, 18
         title_y, subtitle_y = 160, 345
         positions = (
-            ("frostbyte", 0.28, 805, "waving", 0.25),
-            ("bolt", 0.72, 805, "waving", 0.55),
-            ("cinder", 0.28, 1230, "running", 0.75),
-            ("mantra", 0.72, 1230, "idle", 0.95),
-            ("sprig", 0.28, 1655, "review", 1.15),
-            ("ping", 0.72, 1655, "waiting", 1.35),
+            ("frostbyte", 0.28, 685, "waving", 0.25),
+            ("bolt", 0.72, 685, "waving", 0.45),
+            ("cinder", 0.28, 1010, "running", 0.65),
+            ("mantra", 0.72, 1010, "idle", 0.85),
+            ("sprig", 0.28, 1335, "review", 1.05),
+            ("ping", 0.72, 1335, "waiting", 1.25),
+            ("luma", 0.28, 1660, "review", 1.45),
+            ("tink", 0.72, 1660, "running", 1.65),
         )
-        sprite_scale = 1.42 * scale
-        field_radius = int(145 * scale)
+        sprite_scale = 1.15 * scale
+        field_radius = int(118 * scale)
         stat_y = int(height * 0.91)
         link_y = int(height * 0.955)
     elif orientation == "square":
         title_size, subtitle_size, mono_size = 62, 23, 15
         title_y, subtitle_y = 92, 250
         positions = (
-            ("frostbyte", 0.18, 620, "waving", 0.25),
-            ("bolt", 0.50, 620, "waving", 0.55),
-            ("cinder", 0.82, 620, "running", 0.75),
-            ("mantra", 0.18, 875, "idle", 0.95),
-            ("sprig", 0.50, 875, "review", 1.15),
-            ("ping", 0.82, 875, "waiting", 1.35),
+            ("frostbyte", 0.125, 620, "waving", 0.25),
+            ("bolt", 0.375, 620, "waving", 0.45),
+            ("cinder", 0.625, 620, "running", 0.65),
+            ("mantra", 0.875, 620, "idle", 0.85),
+            ("sprig", 0.125, 875, "review", 1.05),
+            ("ping", 0.375, 875, "waiting", 1.25),
+            ("luma", 0.625, 875, "review", 1.45),
+            ("tink", 0.875, 875, "running", 1.65),
         )
-        sprite_scale = 0.88 * scale
-        field_radius = int(88 * scale)
+        sprite_scale = 0.72 * scale
+        field_radius = int(72 * scale)
         stat_y = int(height * 0.91)
         link_y = int(height * 0.96)
     else:
         title_size, subtitle_size, mono_size = 60, 22, 15
         title_y, subtitle_y = 55, 205
         positions = (
-            ("frostbyte", 0.085, 530, "waving", 0.25),
-            ("bolt", 0.25, 530, "waving", 0.55),
-            ("cinder", 0.415, 530, "running", 0.75),
-            ("mantra", 0.585, 530, "idle", 0.95),
-            ("sprig", 0.75, 530, "review", 1.15),
-            ("ping", 0.915, 530, "waiting", 1.35),
+            ("frostbyte", 0.06, 530, "waving", 0.25),
+            ("bolt", 0.185, 530, "waving", 0.45),
+            ("cinder", 0.31, 530, "running", 0.65),
+            ("mantra", 0.435, 530, "idle", 0.85),
+            ("sprig", 0.565, 530, "review", 1.05),
+            ("ping", 0.69, 530, "waiting", 1.25),
+            ("luma", 0.815, 530, "review", 1.45),
+            ("tink", 0.94, 530, "running", 1.65),
         )
-        sprite_scale = 0.86 * scale
-        field_radius = int(76 * scale)
+        sprite_scale = 0.65 * scale
+        field_radius = int(58 * scale)
         stat_y = int(height * 0.86)
         link_y = int(height * 0.94)
 
     title = font(FONT_BOLD, int(title_size * scale))
     subtitle = font(FONT_REGULAR, int(subtitle_size * scale))
     mono = font(FONT_MONO, int(mono_size * scale))
-    draw_centered(draw, int(title_y * scale), "SIX POWERS.", title, (247, 250, 255, 255), width, stroke=max(2, int(3 * scale)), stroke_fill=(4, 7, 18, 210))
+    draw_centered(draw, int(title_y * scale), "EIGHT POWERS.", title, (247, 250, 255, 255), width, stroke=max(2, int(3 * scale)), stroke_fill=(4, 7, 18, 210))
     draw_centered(draw, int((title_y + 76) * scale), "ONE CODEX CREW.", title, (255, 220, 72, 255), width, stroke=max(2, int(3 * scale)), stroke_fill=(4, 7, 18, 210))
-    draw_centered(draw, int(subtitle_y * scale), "Ice  •  Lightning  •  Smoke + Ash  •  Mind  •  Nature  •  Sound", subtitle, (192, 214, 242, 245), width)
+    draw_centered(draw, int(subtitle_y * scale), "Ice  •  Lightning  •  Smoke + Ash  •  Mind", subtitle, (192, 214, 242, 245), width)
+    draw_centered(draw, int((subtitle_y + 34) * scale), "Nature  •  Sound  •  Light  •  Metal", subtitle, (192, 214, 242, 245), width)
 
     for pet, x_ratio, baseline, state, phase in positions:
         center_x = int(width * x_ratio)
@@ -755,7 +847,7 @@ def poster(path: Path, width: int, height: int, vertical: bool) -> None:
         )
         draw_pet_tag(draw, center_x, baseline_y + int(5 * scale), pet, scale * 1.05)
 
-    draw_centered(draw, stat_y, "6 PETS  •  11 ANIMATION ROWS  •  16 LOOK DIRECTIONS  •  V2", mono, (255, 220, 72, 245), width)
+    draw_centered(draw, stat_y, "8 PETS  •  11 ANIMATION ROWS  •  16 LOOK DIRECTIONS  •  V2", mono, (255, 220, 72, 245), width)
     draw_centered(draw, link_y, "github.com/Ashyboy219/codex-elemental-pets", mono, (194, 212, 238, 235), width)
     image.convert("RGB").save(path, quality=96)
 

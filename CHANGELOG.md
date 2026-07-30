@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0 — 2026-07-29
+
+- Expanded the collection from six pets to eight with Luma, a gentle light familiar, and Tink, a dependable metal familiar.
+- Added eight-pet manifest and installer coverage plus one-click Codex desktop install routes prepared for Luma and Tink.
+- Redesigned the collection poster and 18-second showcase source for an attractive eight-pet arrangement with dedicated Luma and Tink spotlights.
+- Added accessible Luma and Tink roster content while keeping the static evolved-form concept limited to Frostbyte and Bolt.
+- Updated project, licensing, showcase, citation, captions, and social copy for the eight-pet collection.
+
 ## 1.3.0 — 2026-07-29
 
 - Expanded the collection from four pets to six with Sprig, a patient nature familiar, and Ping, an attentive sound familiar.
